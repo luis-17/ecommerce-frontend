@@ -1,0 +1,30 @@
+[
+  {
+    "value": 1,
+    "text": "SOLTERO"
+  },
+  {
+    "value": 2,
+    "text": "CASADO"
+  },
+  {
+    "value": 3,
+    "text": "VIUDO"
+  },
+  {
+    "value": 4,
+    "text": "SEPARADO JUDICIAL"
+  },
+  {
+    "value": 5,
+    "text": "SEPARADO HECHO"
+  },
+  {
+    "value": 6,
+    "text": "DIVORCIADO"
+  },
+  {
+    "value": 7,
+    "text": "CONVIVIENTE"
+  }
+]

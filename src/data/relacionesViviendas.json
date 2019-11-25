@@ -1,0 +1,22 @@
+[
+  {
+    "value": 1,
+    "text": "PROPIEDAD LIBRE (PROPIA)"
+  },
+  {
+    "value": 2,
+    "text": "PROPIEDAD HIPOTECADA"
+  },
+  {
+    "value": 3,
+    "text": "ALQUILER"
+  },
+  {
+    "value": 4,
+    "text": "FAMILIA"
+  },
+  {
+    "value": 5,
+    "text": "OTROS"
+  }
+]

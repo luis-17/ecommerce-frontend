@@ -1,0 +1,151 @@
+.form-control[disabled],
+.custom-select[disabled] {
+  background-color: #dadbdd !important;
+}
+
+.form-label-group {
+  position: relative;
+  margin-bottom: 1.7rem;
+  > {
+    input, select {
+      height: 3.125rem;
+      padding: .75rem;
+    }
+    .input-group {
+      input {
+        height: 3.125rem;
+        padding: .75rem;
+      }
+      button {
+        height: 3.125rem;
+      }
+      & + label.filled {
+        padding-top: .25rem;
+        padding-bottom: .25rem;
+        font-size: 12px;
+        color: #777;
+      }
+    }
+    label {
+      height: 3.125rem;
+      padding: .75rem;
+      position: absolute;
+      top: 0;
+      left: 0;
+      display: block;
+      width: 100%;
+      margin-bottom: 0;
+      /* Override default `<label>` margin */
+      line-height: 1.5;
+      color: #495057;
+      pointer-events: none;
+      cursor: text;
+      /* Match the input under the label */
+      border: 1px solid transparent;
+      border-radius: .25rem;
+      transition: all .1s ease-in-out;
+      z-index: 4;
+      overflow: hidden;
+      white-space: nowrap;
+      text-overflow: ellipsis;
+    }
+  }
+  input {
+    &::placeholder {
+      color: transparent;
+    }
+    &:not(:placeholder-shown) {
+      padding-top: 1.25rem;
+      padding-bottom: .25rem;
+      ~ label {
+        padding-top: .25rem;
+        padding-bottom: .25rem;
+        font-size: 12px;
+        color: #777;
+      }
+    }
+  }
+  select {
+    color: transparent;
+    &.custom-select-selected {
+      padding-top: 1.25rem;
+      padding-bottom: .25rem;
+      ~ label {
+        padding-top: .25rem;
+        padding-bottom: .25rem;
+        font-size: 12px;
+        color: #777;
+      }
+    }
+  }
+}
+.invalid-tooltip {
+  top: inherit;
+}
+.input-group.is-invalid ~ .invalid-tooltip {
+  display: block;
+}
+.custom-select.is-invalid {
+  background-image: url('./assets/images/Icon_Arrow.svg');
+  background-repeat: no-repeat;
+  background-position: calc(100% - 1rem) 50%;
+  background-size: 14px 10px;
+}
+.input-group button {
+  width: 4rem;
+  &:hover, &:focus {
+    outline: none !important;
+    box-shadow: none !important;
+  }
+  &:active {
+    outline: none !important;
+    box-shadow: none !important;
+    &:focus:not(:disabled):not(.disabled) {
+      outline: none !important;
+      box-shadow: none !important;
+    }
+  }
+}
+// .custom-select:focus > option,
+// .custom-select.custom-select-selected {
+//   color: #000 !important;
+// }
+.custom-select {
+  background-image: url('./assets/images/Icon_Arrow.svg');
+  background-repeat: no-repeat;
+  background-position: calc(100% - 1rem) 50%;
+  background-size: 14px 10px;
+}
+.custom-select:disabled {
+  color: transparent;
+}
+
+// k-button
+
+.k-button {
+  min-width: 15rem;
+}
+.k-button-layout {
+  .k-button + .k-button {
+    margin-left: 0.25rem;
+    margin-right: 0.25rem;
+  }
+  @media (max-width: 575.98px) {
+    .k-button + .k-button {
+      margin-top: 1rem !important;
+    }
+  }
+  hr {
+    margin-top: 0;
+    border: 0;
+  }
+}
+
+.was-validated .form-control:invalid,
+.form-control.is-invalid {
+  background-image: none !important;
+}
+
+textarea {
+  resize: none;
+}

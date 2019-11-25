@@ -1,0 +1,96 @@
+[
+  {
+    "index": 0,
+    "title": "Registro de Solicitud",
+    "numItemsByLine": 2,
+    "pages": [
+      {
+        "step": "01",
+        "title": "",
+        "view": "Inicio",
+        "index": 0,
+        "showInStepper": true,
+        "skeep": false
+      },
+      {
+        "step": "02",
+        "title": "",
+        "view": "AvisoSiguiente1",
+        "index": 1,
+        "showInStepper": true,
+        "skeep": false
+      },
+      {
+        "step": "03",
+        "title": "",
+        "view": "DatosRepresentanteLegal",
+        "index": 2,
+        "showInStepper": true,
+        "skeep": false
+      },
+      {
+        "step": "04",
+        "title": "",
+        "view": "DatosContactoAdministrativo",
+        "index": 3,
+        "showInStepper": true,
+        "skeep": false
+      },
+      {
+        "step": "05",
+        "title": "",
+        "view": "Pin",
+        "index": 4,
+        "showInStepper": true,
+        "skeep": false
+      },
+      {
+        "step": "06",
+        "title": "",
+        "view": "DatosFinanciamiento",
+        "index": 5,
+        "showInStepper": true,
+        "skeep": false
+      },
+      {
+        "step": "07",
+        "title": "",
+        "view": "Simulacion",
+        "index": 6,
+        "showInStepper": true,
+        "skeep": false
+      },
+      {
+        "step": "08",
+        "title": "",
+        "view": "DatosDesembolso",
+        "index": 7,
+        "showInStepper": true,
+        "skeep": false
+      },
+      {
+        "step": "09",
+        "title": "",
+        "view": "DescargaFormatoPEP",
+        "index": 8,
+        "showInStepper": true,
+        "skeep": false
+      },
+      {
+        "step": "10",
+        "title": "",
+        "view": "Documentos",
+        "index": 9,
+        "showInStepper": true,
+        "skeep": false
+      },
+      {
+        "step": "11",
+        "title": "Fin",
+        "index": 10,
+        "showInStepper": true,
+        "skeep": false
+      }
+    ]
+  }
+]

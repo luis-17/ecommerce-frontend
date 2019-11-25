@@ -1,0 +1,102 @@
+[
+  {
+    "value" : 1,
+    "text" : "AMAZONAS"
+  },
+  {
+    "value" : 2,
+    "text" : "ÁNCASH"
+  },
+  {
+    "value" : 3,
+    "text" : "APURÍMAC"
+  },
+  {
+    "value" : 4,
+    "text" : "AREQUIPA"
+  },
+  {
+    "value" : 5,
+    "text" : "AYACUCHO"
+  },
+  {
+    "value" : 6,
+    "text" : "CAJAMARCA"
+  },
+  {
+    "value" : 7,
+    "text" : "CALLAO"
+  },
+  {
+    "value" : 8,
+    "text" : "CUSCO"
+  },
+  {
+    "value" : 9,
+    "text" : "HUANCAVELICA"
+  },
+  {
+    "value" : 10,
+    "text" : "HUÁNUCO"
+  },
+  {
+    "value" : 11,
+    "text" : "ICA"
+  },
+  {
+    "value" : 12,
+    "text" : "JUNÍN"
+  },
+  {
+    "value" : 13,
+    "text" : "LA LIBERTAD"
+  },
+  {
+    "value" : 14,
+    "text" : "LAMBAYEQUE"
+  },
+  {
+    "value" : 15,
+    "text" : "LIMA"
+  },
+  {
+    "value" : 16,
+    "text" : "LORETO"
+  },
+  {
+    "value" : 17,
+    "text" : "MADRE DE DIOS"
+  },
+  {
+    "value" : 18,
+    "text" : "MOQUEGUA"
+  },
+  {
+    "value" : 19,
+    "text" : "PASCO"
+  },
+  {
+    "value" : 20,
+    "text" : "PIURA"
+  },
+  {
+    "value" : 21,
+    "text" : "PUNO"
+  },
+  {
+    "value" : 22,
+    "text" : "SAN MARTÍN"
+  },
+  {
+    "value" : 23,
+    "text" : "TACNA"
+  },
+  {
+    "value" : 24,
+    "text" : "TUMBES"
+  },
+  {
+    "value" : 25,
+    "text" : "UCAYALI"
+  }
+]
