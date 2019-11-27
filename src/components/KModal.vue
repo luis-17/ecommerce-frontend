@@ -27,33 +27,22 @@ export default {
             h('div', {
               staticClass: 'card-header border-0 bg-white d-flex pt-3',
             }, [
-              h('img', {
-                staticClass: 'ml-auto',
-                attrs: {
-                  src: require('@/assets/images/close-jp.svg'),
-                  width: '15rem',
-                },
-                on: {
-                  click(event) {
-                    self.$emit('close', event);
-                  },
-                },
-              }),
+              // h('img', {
+              //   staticClass: 'ml-auto',
+              //   attrs: {
+              //     src: require('@/assets/images/icon_close.svg'),
+              //     width: '15rem',
+              //   },
+              //   on: {
+              //     click(event) {
+              //       self.$emit('close', event);
+              //     },
+              //   },
+              // }),
             ]),
             h('div', {
               staticClass: 'card-body py-1 dummy-modal',
             }, self.$slots.default),
-            h('div', {
-              staticClass: 'box-footer mt-3',
-            }, [
-              h('img', {
-                staticClass: '',
-                attrs: {
-                  src: require('@/assets/images/Bar.svg'),
-                  width: '100%',
-                },
-              }),
-            ]),
           ]),
         ]),
       ]),

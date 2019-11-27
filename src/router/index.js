@@ -6,6 +6,10 @@ import Root from '@/views/Layout/Root.vue';
 import Inicio from '@/views/Inicio.vue';
 import Login from '@/views/Auth/Login.vue';
 
+import RegistrarCuenta from '@/views/Auth/RegistrarCuenta.vue';
+import RecuperarCuenta from '@/views/Auth/RecuperarCuenta.vue';
+
+
 import { store } from '@/store';
 import accountTypes from '@/store/types/account';
 
@@ -17,7 +21,28 @@ const router = new Router({
   routes: [
     {
       path: '/',
+      name: 'Inicio',
       component: Root,
+      meta: { Auth: false },
+      async beforeEnter(to, from, next) {
+        await store.dispatch(accountTypes.actions.logout);
+        next();
+      },
+    },
+    {
+      path: '/registrar-cuenta',
+      name: 'RegistrarCuenta',
+      component: RegistrarCuenta,
+      meta: { Auth: false },
+      async beforeEnter(to, from, next) {
+        await store.dispatch(accountTypes.actions.logout);
+        next();
+      },
+    },
+    {
+      path: '/recuperar-cuenta/:tkn',
+      name: 'RecuperarCuenta',
+      component: RecuperarCuenta,
       meta: { Auth: false },
       async beforeEnter(to, from, next) {
         await store.dispatch(accountTypes.actions.logout);

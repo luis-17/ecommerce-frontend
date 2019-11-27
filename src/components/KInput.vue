@@ -307,7 +307,7 @@ export default {
   render(h) {
     const self = this;
     return h('div', {
-      staticClass: 'mb-3pp',
+      staticClass: 'mb-1',
     }, [
       self.genLabel(),
       self.isInputText

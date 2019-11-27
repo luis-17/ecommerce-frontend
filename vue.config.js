@@ -3,7 +3,7 @@ const Webpack = require('webpack');
 module.exports = {
   configureWebpack: (config) => {
     config.plugins.push(new Webpack.DefinePlugin({
-      'process.env.API_URL': '"http://localhost:8080/api-citas-providencia/public"',
+      'process.env.API_URL': '"http://localhost:8080/api-citas-providencia/public/api"',
       'process.env.reCAPTCHA_SITE_KEY': '"6LdvhowUAAAAANO_QqjifLELhrAazeoNd2bL3iNt"',
     }));
 

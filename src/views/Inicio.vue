@@ -55,7 +55,7 @@
             .box-olvido-clave.text-center
               k-button(type='link' @click='olvideClave' class='mt-2') Olvidé mi clave
             .box-registrate-ahora.text-center
-              k-button(type='link' @click='registrateAhora') ¿No tienes cuenta? ¡Regístrate ahora!
+              k-button(type='link' @click='$router.push({ name: "RegistrarCuenta" })') ¿No tienes cuenta? ¡Regístrate ahora!
           .box-form-content
             .box-olvido-clave-content(v-if='boolOlvidoClave')
               h2 Recuperación de Cuenta
@@ -75,117 +75,7 @@
                   k-button-layout.col-lg-12.mt-3
                     k-button(type='submit') Recuperar Cuenta
                     k-button(type='link' @click='volverAlInicio') Volver
-            .box-registrate-ahora-content(v-if='boolRegistrateAhora')
-              h2 Crea tu cuenta.
-              form( novalidate='' @submit.prevent='onDatosRegistro' data-vv-scope='formDatosRegistro')
-                .row
-                  .col-lg-12.col-md-12.col-sm-12.col-xs-12
-                    k-input(
-                      mask='########'
-                      :label='"Número de Documento"'
-                      :placeholder='"Número de Documento"'
-                      :data-vv-as='"Número de Documento"'
-                      name='numeroDocumento'
-                      maxlength='8'
-                      v-validate='{ required: true, min: 8, max: 8 }'
-                      :error='errors.first("formDatosRegistro.numeroDocumento")'
-                      v-model.trim='formDatosRegistro.numeroDocumento')
-                  .col-12.col-sm-6
-                    k-input(
-                      :label='"Nombres"'
-                      :placeholder='"Nombres"'
-                      :data-vv-as='"Nombres"'
-                      name='nombres'
-                      maxlength='255'
-                      v-validate='"required|max:255"'
-                      :error='errors.first("formDatosRegistro.nombres")'
-                      v-model.trim='formDatosRegistro.nombres')
-                  .col-12.col-sm-6
-                    k-input(
-                      :label='"Apellido Paterno"'
-                      :placeholder='"Apellido Paterno"'
-                      :data-vv-as='"Apellido Paterno"'
-                      name='apellidoPaterno'
-                      maxlength='255'
-                      v-validate='"required|max:255"'
-                      :error='errors.first("formDatosRegistro.apellidoPaterno")'
-                      v-model.trim='formDatosRegistro.apellidoPaterno')
-                  .col-12.col-sm-6
-                    k-input(
-                      :label='"Apellido Materno"'
-                      :placeholder='"Apellido Materno"'
-                      :data-vv-as='"Apellido Materno"'
-                      name='apellidoMaterno'
-                      maxlength='255'
-                      v-validate='"required|max:255"'
-                      :error='errors.first("formDatosRegistro.apellidoMaterno")'
-                      v-model.trim='formDatosRegistro.apellidoMaterno')
-                  .col-12.col-sm-6
-                    k-input(
-                      :label='"Correo Electrónico"'
-                      :placeholder='"Correo Electrónico"'
-                      :data-vv-as='"Correo Electrónico"'
-                      name='correoElectronico'
-                      maxlength='255'
-                      v-validate='"required|email"'
-                      :error='errors.first("formDatosRegistro.correoElectronico")'
-                      v-model.trim='formDatosRegistro.correoElectronico')
-                  .col-12.col-sm-6
-                    k-input(
-                      v-mask='"#########"'
-                      :label='"Celular"'
-                      :placeholder='"Celular"'
-                      :data-vv-as='"Celular"'
-                      name='numCelular'
-                      maxlength='9'
-                      v-validate='"required|numeric|min:9|max:9"'
-                      :error='errors.first("formDatosRegistro.numCelular")'
-                      v-model.trim='formDatosRegistro.numCelular')
-                  .col-12.col-sm-6
-                    k-input(
-                      :label='"Fecha de Nacimiento"'
-                      :placeholder='"Fecha de Nacimiento"'
-                      :data-vv-as='"Fecha de Nacimiento"'
-                      name='fechaNacimiento'
-                      maxlength='10'
-                      v-validate='"required|date_format:yyyy-MM-dd"'
-                      :error='errors.first("formDatosRegistro.fechaNacimiento")'
-                      v-model.trim='formDatosRegistro.fechaNacimiento'
-                      :readonly='true')
-                  .col-12.col-sm-6
-                    k-select(
-                      :label='"Sexo"'
-                      :placeholder='"Sexo"'
-                      :data-vv-as='"Sexo"'
-                      name='sexo'
-                      v-validate='"required"'
-                      :error='errors.first("formDatosRegistro.sexo")'
-                      v-model='formDatosRegistro.sexo'
-                      :options='sexos'
-                      :readonly='true')
-                  .col-lg-12.col-md-12.col-sm-12.col-xs-12
-                    k-input(
-                      :label='"Clave"'
-                      :placeholder='"Clave"'
-                      :data-vv-as='"Clave"'
-                      name='clave'
-                      maxlength='255'
-                      v-validate='{"required": true, "max": 255}'
-                      :error='errors.first("formDatosRegistro.clave")'
-                      v-model.trim='formDatosRegistro.clave')
-                  .col-lg-12.col-md-12.col-sm-12.col-xs-12
-                    k-input(
-                      :label='"Repita clave"'
-                      :placeholder='"Repita clave"'
-                      :data-vv-as='"Repita clave"'
-                      name='repitaClave'
-                      maxlength='255'
-                      v-validate='{"required": true, "max": 255}'
-                      :error='errors.first("formDatosRegistro.repitaClave")'
-                      v-model.trim='formDatosRegistro.repitaClave')
-                  k-button-layout.col-lg-12.mt-3
-                    k-button(type='submit') Crear Cuenta
-                    k-button(type='link' @click='volverAlInicio') Volver
+              
     
 </template>
 <script>
@@ -215,19 +105,6 @@ export default {
     formDatosOlvidoClave: {
       numeroDocumento: null,
     },
-    formDatosRegistro: {
-      tipoDocumento: null,
-      numeroDocumento: null,
-      nombres: null,
-      apellidoPaterno: null,
-      apellidoMaterno: null,
-      correo: null,
-      celular: null,
-      fechaNacimiento: null,
-      sexo: null,
-      clave: null,
-      repitaClave: null,
-    }
   }),
   async created() {
     // await this.fetchData();
@@ -264,10 +141,12 @@ export default {
         }
       },
       async onDatosOlvidoClave() {
-        const { flag, message } = await this.GenericService.store({
+        const arrData = await this.GenericService.store({
           uri: 'recuperaPassword',
           data: { ...this.formDatosOlvidoClave },
         });
+        console.log(arrData, 'arrDataaatr');
+        const { flag, message } = arrData;
         if(flag === 1){
           this.$swal({ type: 'success', text: message });
           this.volverAlInicio();

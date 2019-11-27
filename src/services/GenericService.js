@@ -38,7 +38,7 @@ class GenericService {
   async store({ uri, data }) {
     Vue.$log.debug('XHR -> store', uri, data);
     try {
-      const { data: { data: $data } } = await this.axios.post(uri, data);
+      const { data: $data } = await this.axios.post(uri, data);
       Vue.$log.debug('response -> data', $data);
       return $data;
     } catch (error) {
@@ -60,7 +60,7 @@ class GenericService {
   async storeWithToken({ uri, data }) {
     Vue.$log.debug('XHR -> store', uri, data);
     try {
-      const { data: { data: $data } } = await this.axios.post(uri, data);
+      const { data: $data } = await this.axios.post(uri, data);
       this.axios.defaults.headers.common.Authorization = `Bearer ${$data.token}`;
       Vue.$log.debug('response -> data', $data);
       return $data;
