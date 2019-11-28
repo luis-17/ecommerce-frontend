@@ -7,9 +7,12 @@ import notificationsTypes from '@/store/types/notifications';
 const state = {
   status: '😶',
   user: {
-    iat: null,
+    idusuario: null,
+    idcliente: null,
     username: null,
-    rol: null,
+    nombres: null,
+    apellido_paterno: null,
+    apellido_materno: null,
   },
   token: null,
   logged: store.has('TID'),
@@ -30,9 +33,13 @@ const mutations = {
   },
   [accountType.mutations.loginSuccess](state, { user, token }) {
     state.status = '😃';
-    state.user.iat = user.iat;
+    state.user.idusuario = user.idusuario;
+    state.user.idcliente = user.idcliente;
     state.user.username = user.username;
-    state.user.rol = user.rol;
+    state.user.nombres = user.nombres;
+    state.user.apellido_paterno = user.apellido_paterno;
+    state.user.apellido_materno = user.apellido_materno;
+    // state.user.rol = user.rol;
     state.token = token;
     state.logged = true;
   },
@@ -41,9 +48,13 @@ const mutations = {
   },
   [accountType.mutations.logout](state) {
     state.status = '😶';
-    state.user.iat = null;
+    state.user.idusuario = null;
+    state.user.idcliente = null;
     state.user.username = null;
-    state.user.rol = null;
+    state.user.nombres = null;
+    state.user.apellido_paterno = null;
+    state.user.apellido_materno = null;
+    // state.user.rol = null;
     state.token = null;
     state.logged = false;
   },
@@ -61,10 +72,16 @@ const actions = {
   [accountType.actions.login]: injector.encase(['AccountService'], (AccountService) => async ({ dispatch, commit }, credentials) => {
     try {
       commit(accountType.mutations.loginRequest);
-      const { token, flag } = await AccountService.login(credentials);
+      const data = await AccountService.login(credentials);
+      console.log(data, 'vuex dataaa');
+      const { token, flag } = data;
       const user = jwtDecode(token);
-      // console.log(user, 'userrrr');
+      console.log(user, 'useeerrr');
       commit(accountType.mutations.loginSuccess, { user, token });
+
+
+
+
       // const { id: perfilId } = user.perfil;
       // let view = 'Login';
       // switch (perfilId) {
@@ -82,14 +99,16 @@ const actions = {
       //     break;
       // }
       // console.log('view:::', view);
+      // console.log(token, flag, 'token, flag vuex');
       return { token, flag };
     } catch (error) {
       if (error.status === 418) {
         return error.data.data;
       }
+      // console.log(error.message, 'error.message de vuex');
       commit(accountType.mutations.loginFailure);
       await dispatch(notificationsTypes.actions.error, error);
-      return null;
+      return { token: null, flag: 0, message: error.message };
     }
   }),
   [accountType.actions.logout]: injector.encase(['AccountService'], AccountService => async ({ commit }) => {
@@ -97,9 +116,9 @@ const actions = {
     store.remove('TID');
     commit(accountType.mutations.logout);
   }),
-  [accountType.actions.keepAlive]: injector.encase(['AccountService'], AccountService => async () => {
-    await AccountService.keepAlive();
-  }),
+  // [accountType.actions.keepAlive]: injector.encase(['AccountService'], AccountService => async () => {
+  //   await AccountService.keepAlive();
+  // }),
 };
 
 export default {

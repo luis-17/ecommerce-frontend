@@ -11,7 +11,7 @@ import RecuperarCuenta from '@/views/Auth/RecuperarCuenta.vue';
 import ValidarCuenta from '@/views/Auth/ValidarCuenta.vue';
 
 // start: In
-import InRoot from '@/views/In/Root.vue';
+import InRoot from '@/views/In/InRoot.vue';
 import Home from '@/views/In/Home.vue';
 import AgendarCita from '@/views/In/AgendarCita.vue';
 import HistorialCitas from '@/views/In/HistorialCitas.vue';
@@ -30,7 +30,7 @@ const router = new Router({
     {
       path: '/',
       name: 'Inicio',
-      component: Root,
+      component: Inicio,
       meta: { Auth: false },
       async beforeEnter(to, from, next) {
         await store.dispatch(accountTypes.actions.logout);
@@ -103,7 +103,8 @@ const router = new Router({
 
 router.beforeEach(async (to, from, next) => {
   if (to.meta.Auth && !store.state.account.logged) {
-    next({ name: 'Inicio '});
+    next({ name: 'Inicio'});
+    // this.$router.push({ name: "Inicio" });
   } else {
     if (store.state.account.logged) {
       await store.dispatch(accountTypes.actions.setUser);

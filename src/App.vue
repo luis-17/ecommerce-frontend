@@ -15,6 +15,31 @@
         :line-size='7'
         :message='$t("messages.uploading")')
     k-header
+      template(
+        v-if='$can("logged", "USER")'
+        v-slot:header='')
+        .box-menu
+          ul.box-content-menu
+            li
+              a( @click='$router.push({ name: "Home" })' ) INICIO
+            li
+              a( @click='$router.push({ name: "AgendarCita" })' ) AGENDAR CITA
+            li
+              a( @click='$router.push({ name: "HistorialCitas" })' ) HISTORIAL
+        .box-perfil
+          .box-perfil-content
+            .box-photo
+              a( @click='$router.push({ name: "PerfilPaciente" })')
+                img(src='@/assets/images/default.jpg')
+            .box-info
+              .box-info-rol Bienvenido
+              .box-info-nickname {{ user.nombres }}
+            .logout
+              a.logout-text
+                img(src='@/assets/images/icons/shutdown.png')
+      template(
+        v-else=''
+        v-slot:form='')
     .vh-app
       router-view
 </template>
@@ -29,6 +54,9 @@ import vueinterval from 'vue-interval/dist/VueInterval.common';
 export default {
   name: 'App',
   mixins: [vueinterval],
+  data: () => ({
+    username: null,
+  }),
   computed: {
     ...mapGetters({
       notifications: notificationsTypes.getters.getStack,
@@ -38,6 +66,8 @@ export default {
   },
   created() {
     window.addEventListener('beforeunload', this.handler);
+    // console.log(accountTypes.getters.getUser, 'accountTypes.getters.getUser')
+    this.username = accountTypes.getters.getUser;
   },
   methods: {
     showStepper() {
@@ -48,18 +78,18 @@ export default {
       await this.$store.dispatch(fuvexTypes.actions.closeProcess);
     },
     INTERVAL__9000$ping() {
-      if (this.user.username) {
-        this.$store.dispatch(accountTypes.actions.keepAlive).catch(async () => {
-          await this.$store.dispatch(accountTypes.actions.logout);
-          await this.$store.dispatch(fuvexTypes.actions.closeProcess);
-          this.$swal({
-            type: 'warning',
-            title: 'Sesi\u00F3n expirada',
-          }).then(() => {
-            this.$router.push({ name: 'Login' });
-          });
-        });
-      }
+      // if (this.user.username) {
+      //   this.$store.dispatch(accountTypes.actions.keepAlive).catch(async () => {
+      //     await this.$store.dispatch(accountTypes.actions.logout);
+      //     await this.$store.dispatch(fuvexTypes.actions.closeProcess);
+      //     this.$swal({
+      //       type: 'warning',
+      //       title: 'Sesi\u00F3n expirada',
+      //     }).then(() => {
+      //       this.$router.push({ name: 'Login' });
+      //     });
+      //   });
+      // }
     },
   },
   watch: {
@@ -98,5 +128,19 @@ export default {
   @import '@/../node_modules/pikaday/scss/pikaday.scss';
   .navbar-brand{
     margin-left: 1rem;
+  }
+  .box-perfil-content{
+    display: flex;
+  }
+  .header-nav{
+    display: flex;
+  }
+  .box-photo img{
+    width: 48px;
+    border-radius: 48%;
+    height: 48px;
+  }
+  .box-content-menu{
+    display: flex;
   }
 </style>

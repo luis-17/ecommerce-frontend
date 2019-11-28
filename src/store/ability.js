@@ -12,13 +12,13 @@ export const abilityPlugin = (store) => {
     switch (mutation.type) {
       case accountType.mutations.loginSuccess: {
         // console.log(mutation.payload, 'mutation.payload ghj');
-        const { id: rol } = mutation.payload.user.perfil;
+        const { username } = mutation.payload.user;
         const abilities = [{
           actions: 'logged',
           subject: 'USER',
         }, {
-          actions: 'all',
-          subject: invert(Roles)[rol],
+          actions: 'username',
+          subject: username,
         }];
         ability.update(abilities);
         break;

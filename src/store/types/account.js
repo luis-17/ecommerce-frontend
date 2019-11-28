@@ -15,6 +15,6 @@ export default namespace('account', {
     'setUser',
     'login',
     'logout',
-    'keepAlive',
+    // 'keepAlive',
   ],
 });

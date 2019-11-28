@@ -6,13 +6,20 @@ class AccountService {
   }
 
   async login(credentials) {
+    console.log('loggigigngigngigni');
     try {
-      const { data: { token }, data } = await this.axios.post('login', credentials);
-      console.log(data, 'dataaaaaaa services');
+      const { data } = await this.axios.post('login', credentials);
+      // console.log(data, 'dataaaaaaa services');
+      const { token } = data;
       this.axios.defaults.headers.common.Authorization = `Bearer ${token}`;
       return data;
     } catch (error) {
+      console.log(error.message, 'error.message');
       this.axios.defaults.headers.common.Authorization = null;
+      // return {
+      //   flag: 0,
+      //   message: error.message,
+      // }
       throw new ServerError(error);
     }
   }
@@ -54,13 +61,13 @@ class AccountService {
     }
   }
 
-  async keepAlive() {
-    try {
-      await this.axios.post('keep-alive');
-    } catch (error) {
-      throw new ServerError(error);
-    }
-  }
+  // async keepAlive() {
+  //   try {
+  //     await this.axios.post('keep-alive');
+  //   } catch (error) {
+  //     throw new ServerError(error);
+  //   }
+  // }
 }
 
 export default AccountService;

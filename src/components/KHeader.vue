@@ -2,8 +2,8 @@
   nav.k-header.navbar.container-fluid
     a.navbar-brand
       img(src='@/assets/images/logo-h.png')
-    form.form-inline
-      slot(name='form')
+    .header-nav
+      slot(name='header')
 </template>
 
 <script>

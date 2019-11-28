@@ -27,7 +27,7 @@ class GenericService {
   async show({ uri, params = {} }) {
     Vue.$log.debug('XHR -> show', uri, params);
     try {
-      const { data: { data } } = await this.axios.get(uri, { params });
+      const { data } = await this.axios.get(uri, { params });
       Vue.$log.debug('response -> show', data);
       return data;
     } catch (error) {

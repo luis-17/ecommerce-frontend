@@ -111,6 +111,7 @@ export default {
           const data = await this.GenericService.show({
             uri: 'platform/cargar_perfil_general',
           });
+          console.log(data, 'dataatartara');
           if (data) {
             this.CommonService.assign(this.fPerfil, data.datos);
           }
