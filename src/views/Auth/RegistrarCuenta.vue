@@ -1,51 +1,29 @@
 <template lang="pug">
   k-modal(@close='$router.push({ name: "Inicio" })')
-    //- form(
-    //-   novalidate=''
-    //-   @submit.prevent='onDatosRegistro'
-    //-   data-vv-scope='formDatosRegistro')
-    //-   h4.mb-4.text-center <img src='@/assets/images/favicon.png' /> Recuperación de Cuenta
-    //-   k-input(
-    //-     type='password'
-    //-     :label='"Clave"'
-    //-     :placeholder='"Clave"'
-    //-     :data-vv-as='"Clave"'
-    //-     name='password'
-    //-     maxlength='255'
-    //-     v-validate='"required|min:8|max:255"'
-    //-     :error='errors.first("formDatosRegistro.password")'
-    //-     v-model.trim='formDatosRegistro.password'
-    //-     ref='password'
-    //-     :all-uppercase='false')
-    //-   k-input(
-    //-     type='password'
-    //-     :label='"Repita la clave"'
-    //-     :placeholder='"Repita la clave"'
-    //-     :data-vv-as='"Repita la clave"'
-    //-     name='confirmPassword'
-    //-     maxlength='255'
-    //-     v-validate='"required|confirmed:password|min:8|max:255"'
-    //-     :error='errors.first("formDatosRegistro.confirmPassword")'
-    //-     v-model.trim='formDatosRegistro.confirmPassword'
-    //-     :all-uppercase='false')
-    //-   k-button-layout
-    //-     k-button(type='submit') Aceptar
-    //-     br
-    //-     k-button(type='link' @click='$router.push({ name: "Inicio" })') Volver al Inicio
     form( novalidate='' @submit.prevent='onDatosRegistro' data-vv-scope='formDatosRegistro')
       .row
         h4.mb-4.text-center.col-12 <img src='@/assets/images/favicon.png' /> Crea tu cuenta
-        .col-lg-12.col-md-12.col-sm-12.col-xs-12
+        .col-12.col-sm-6
+          k-select(
+            :label='"Tipo de Documento"'
+            :placeholder='"Tipo de Documento"'
+            :data-vv-as='"Tipo de Documento"'
+            name='tipo_documento'
+            v-validate='"required"'
+            :error='errors.first("formDatosRegistro.tipo_documento")'
+            v-model='formDatosRegistro.tipo_documento'
+            :options='tiposDocumentos')
+        .col-12.col-sm-6
           k-input(
             mask='########'
             :label='"Número de Documento"'
             :placeholder='"Número de Documento"'
             :data-vv-as='"Número de Documento"'
-            name='numeroDocumento'
+            name='numero_documento'
             maxlength='8'
             v-validate='{ required: true, min: 8, max: 8 }'
-            :error='errors.first("formDatosRegistro.numeroDocumento")'
-            v-model.trim='formDatosRegistro.numeroDocumento')
+            :error='errors.first("formDatosRegistro.numero_documento")'
+            v-model.trim='formDatosRegistro.numero_documento')
         .col-12.col-sm-6
           k-input(
             :label='"Nombres"'
@@ -61,53 +39,53 @@
             :label='"Apellido Paterno"'
             :placeholder='"Apellido Paterno"'
             :data-vv-as='"Apellido Paterno"'
-            name='apellidoPaterno'
+            name='apellido_paterno'
             maxlength='255'
             v-validate='"required|max:255"'
-            :error='errors.first("formDatosRegistro.apellidoPaterno")'
-            v-model.trim='formDatosRegistro.apellidoPaterno')
+            :error='errors.first("formDatosRegistro.apellido_paterno")'
+            v-model.trim='formDatosRegistro.apellido_paterno')
         .col-12.col-sm-6
           k-input(
             :label='"Apellido Materno"'
             :placeholder='"Apellido Materno"'
             :data-vv-as='"Apellido Materno"'
-            name='apellidoMaterno'
+            name='apellido_materno'
             maxlength='255'
             v-validate='"required|max:255"'
-            :error='errors.first("formDatosRegistro.apellidoMaterno")'
-            v-model.trim='formDatosRegistro.apellidoMaterno')
+            :error='errors.first("formDatosRegistro.apellido_materno")'
+            v-model.trim='formDatosRegistro.apellido_materno')
         .col-12.col-sm-6
           k-input(
             :label='"Correo Electrónico"'
             :placeholder='"Correo Electrónico"'
             :data-vv-as='"Correo Electrónico"'
-            name='correoElectronico'
+            name='correo'
             maxlength='255'
             v-validate='"required|email"'
-            :error='errors.first("formDatosRegistro.correoElectronico")'
-            v-model.trim='formDatosRegistro.correoElectronico')
+            :error='errors.first("formDatosRegistro.correo")'
+            v-model.trim='formDatosRegistro.correo')
         .col-12.col-sm-6
           k-input(
             v-mask='"#########"'
             :label='"Celular"'
             :placeholder='"Celular"'
             :data-vv-as='"Celular"'
-            name='numCelular'
+            name='celular'
             maxlength='9'
             v-validate='"required|numeric|min:9|max:9"'
-            :error='errors.first("formDatosRegistro.numCelular")'
-            v-model.trim='formDatosRegistro.numCelular')
+            :error='errors.first("formDatosRegistro.celular")'
+            v-model.trim='formDatosRegistro.celular')
         .col-12.col-sm-6
           k-input(
+            type='date'
             :label='"Fecha de Nacimiento"'
             :placeholder='"Fecha de Nacimiento"'
             :data-vv-as='"Fecha de Nacimiento"'
-            name='fechaNacimiento'
+            name='fecha_nacimiento'
             maxlength='10'
             v-validate='"required|date_format:yyyy-MM-dd"'
-            :error='errors.first("formDatosRegistro.fechaNacimiento")'
-            v-model.trim='formDatosRegistro.fechaNacimiento'
-            :readonly='true')
+            :error='errors.first("formDatosRegistro.fecha_nacimiento")'
+            v-model.trim='formDatosRegistro.fecha_nacimiento')
         .col-12.col-sm-6
           k-select(
             :label='"Sexo"'
@@ -117,29 +95,34 @@
             v-validate='"required"'
             :error='errors.first("formDatosRegistro.sexo")'
             v-model='formDatosRegistro.sexo'
-            :options='sexos'
-            :readonly='true')
-        .col-lg-12.col-md-12.col-sm-12.col-xs-12
+            :options='sexos')
+      .row
+        .col-12.col-sm-6
           k-input(
+            type='password'
             :label='"Clave"'
             :placeholder='"Clave"'
             :data-vv-as='"Clave"'
-            name='clave'
+            name='password'
             maxlength='255'
-            v-validate='{"required": true, "max": 255}'
-            :error='errors.first("formDatosRegistro.clave")'
-            v-model.trim='formDatosRegistro.clave')
-        .col-lg-12.col-md-12.col-sm-12.col-xs-12
+            v-validate='"required|min:8|max:255"'
+            :error='errors.first("formDatosRegistro.password")'
+            v-model.trim='formDatosRegistro.password'
+            ref='password'
+            :all-uppercase='false')
+        .col-12.col-sm-6
           k-input(
+            type='password'
             :label='"Repita clave"'
             :placeholder='"Repita clave"'
             :data-vv-as='"Repita clave"'
-            name='repitaClave'
+            name='repita_pass'
             maxlength='255'
-            v-validate='{"required": true, "max": 255}'
-            :error='errors.first("formDatosRegistro.repitaClave")'
-            v-model.trim='formDatosRegistro.repitaClave')
-        k-button-layout
+            v-validate='"required|confirmed:password|min:8|max:255"'
+            :error='errors.first("formDatosRegistro.repita_pass")'
+            v-model.trim='formDatosRegistro.repita_pass'
+            :all-uppercase='false')
+        k-button-layout.mt-3
           k-button(type='submit') Crear Cuenta
           br
           k-button(type='link' @click='$router.push({ name: "Inicio" })') Volver al Inicio
@@ -157,29 +140,33 @@ import { mapWrapper, mapValidation } from '@/common/taco';
 import { mapTaco } from '@/common/util';
 import vueinterval from 'vue-interval/dist/VueInterval.common';
 
+import tiposDocumentos from '@/data/tiposDocumentos.json';
+import sexos from '@/data/sexos.json';
+
 export default {
   name: 'RegistrarCuenta',
   dependencies: ['AccountService', 'GenericService'],
   data: () => ({
     formDatosRegistro: {
-      tipoDocumento: null,
-      numeroDocumento: null,
+      tipo_documento: null,
+      numero_documento: null,
       nombres: null,
-      apellidoPaterno: null,
-      apellidoMaterno: null,
+      apellido_paterno: null,
+      apellido_materno: null,
       correo: null,
       celular: null,
-      fechaNacimiento: null,
+      fecha_nacimiento: null,
       sexo: null,
-      clave: null,
-      repitaClave: null,
+      password: null,
+      repita_pass: null,
     },
   }),
   async created() {
     //await this.fetchData();
   },
   computed: {
-    
+    tiposDocumentos: () => tiposDocumentos,
+    sexos: () => sexos,
   },
   methods: {
     async onDatosRegistro() {
@@ -188,8 +175,7 @@ export default {
         try {
           this.$wait.start('global');
           const arrData = await this.AccountService.registrarCuenta({
-            password: this.formDatosRegistro.password,
-            token: this.$route.params.tkn,
+            ...this.formDatosRegistro, username: this.formDatosRegistro.numero_documento,
           });
           const { flag, message } = arrData;
           this.$swal({ type: 'success', text: message }).then(() => {

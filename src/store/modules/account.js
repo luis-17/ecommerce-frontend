@@ -58,31 +58,31 @@ const actions = {
       axios.defaults.headers.common.Authorization = `Bearer ${token}`;
     }
   }),
-  [accountType.actions.login]: injector.encase(['AccountService', 'Roles'], (AccountService, Roles) => async ({ dispatch, commit }, credentials) => {
+  [accountType.actions.login]: injector.encase(['AccountService'], (AccountService) => async ({ dispatch, commit }, credentials) => {
     try {
       commit(accountType.mutations.loginRequest);
-      const token = await AccountService.login(credentials);
+      const { token, flag } = await AccountService.login(credentials);
       const user = jwtDecode(token);
       // console.log(user, 'userrrr');
       commit(accountType.mutations.loginSuccess, { user, token });
-      const { id: perfilId } = user.perfil;
-      let view = 'Login';
-      switch (perfilId) {
-        case Roles.ADMIN:
-          view = 'Admin/Home';
-          break;
-        case Roles.SUPERVISOR:
-          view = 'Supervisor/Home';
-          break;
-        case Roles.ANALISTA:
-          view = 'Analista/Home';
-          break;
-        default:
-          // empty
-          break;
-      }
+      // const { id: perfilId } = user.perfil;
+      // let view = 'Login';
+      // switch (perfilId) {
+      //   case Roles.ADMIN:
+      //     view = 'Admin/Home';
+      //     break;
+      //   case Roles.SUPERVISOR:
+      //     view = 'Supervisor/Home';
+      //     break;
+      //   case Roles.ANALISTA:
+      //     view = 'Analista/Home';
+      //     break;
+      //   default:
+      //     // empty
+      //     break;
+      // }
       // console.log('view:::', view);
-      return { user, token, view };
+      return { token, flag };
     } catch (error) {
       if (error.status === 418) {
         return error.data.data;

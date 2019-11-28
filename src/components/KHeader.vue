@@ -1,7 +1,7 @@
 <template lang="pug">
   nav.k-header.navbar.container-fluid
     a.navbar-brand
-      img(src='@/assets/images/logo.png')
+      img(src='@/assets/images/logo-h.png')
     form.form-inline
       slot(name='form')
 </template>
@@ -31,6 +31,6 @@ a.navbar-brand{
   padding: 0;
 }
 a.navbar-brand > img{
-  width: 110px;
+  width: 200px;
 }
 </style>

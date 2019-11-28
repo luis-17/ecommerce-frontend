@@ -29,21 +29,22 @@
                   :label='"Número de Documento"'
                   :placeholder='"Número de Documento"'
                   :data-vv-as='"Número de Documento"'
-                  name='numeroDocumento'
+                  name='username'
                   maxlength='8'
                   v-validate='{ required: true, min: 8, max: 8 }'
-                  :error='errors.first("formDatosLogin.numeroDocumento")'
-                  v-model.trim='formDatosLogin.numeroDocumento')
+                  :error='errors.first("formDatosLogin.username")'
+                  v-model.trim='formDatosLogin.username')
               .col-lg-12.col-md-12.col-sm-12.col-xs-12
                 k-input(
+                  type='password'
                   :label='"Clave"'
                   :placeholder='"Clave"'
                   :data-vv-as='"Clave"'
-                  name='clave'
+                  name='password'
                   maxlength='255'
                   v-validate='{"required": true, "max": 255}'
-                  :error='errors.first("formDatosLogin.clave")'
-                  v-model.trim='formDatosLogin.clave')
+                  :error='errors.first("formDatosLogin.password")'
+                  v-model.trim='formDatosLogin.password')
               .col-12.col-md-12
                 .box-recaptcha
                   img(src='@/assets/images/recaptcha_16dp.png')
@@ -82,7 +83,9 @@
 import Vue from 'vue';
 import VueRecaptcha from 'vue-recaptcha';
 import { mapGetters } from 'vuex';
-import fuvexTypes from '@/store/types/fuvex';
+import { mapWaitingActions } from 'vue-wait';
+// import fuvexTypes from '@/store/types/fuvex';
+import accountTypes from '@/store/types/account';
 import { mapWrapper, mapValidation } from '@/common/taco';
 import { mapTaco } from '@/common/util';
 import vueinterval from 'vue-interval/dist/VueInterval.common';
@@ -99,8 +102,8 @@ export default {
     boolOlvidoClave: false,
     boolRegistrateAhora: false,
     formDatosLogin: {
-      numeroDocumento: null,
-      clave: null,
+      username: null,
+      password: null,
     },
     formDatosOlvidoClave: {
       numeroDocumento: null,
@@ -110,14 +113,20 @@ export default {
     // await this.fetchData();
   },
   computed: {
-    ...mapGetters({
-      commingView: fuvexTypes.getters.getComingView,
-    }),
+    // ...mapGetters({
+    //   commingView: fuvexTypes.getters.getComingView,
+    // }),
     sitekey() {
       return this.reCAPTCHA_SITE_KEY;
     },
   },
   methods: {
+    ...mapWaitingActions({
+      login: {
+        action: accountTypes.actions.login,
+        loader: 'global',
+      },
+    }),
     ...mapWrapper({
       
     }),
@@ -145,28 +154,25 @@ export default {
           uri: 'recuperaPassword',
           data: { ...this.formDatosOlvidoClave },
         });
-        console.log(arrData, 'arrDataaatr');
+        // console.log(arrData, 'arrDataaatr');
         const { flag, message } = arrData;
         if(flag === 1){
           this.$swal({ type: 'success', text: message });
           this.volverAlInicio();
         }
-        
       },
       async onVerify(response) {
         try {
-          const { vistaHTML, valor, motivo } = await this.GenericService.storeWithToken({
-            uri: 'evaluations/register-first-request',
-            data: { ...this.formDatosLogin, recaptcha: response },
-          });
-          if (valor === 1 || valor === 2) {
-            await this.$store.dispatch(fuvexTypes.actions.changeView, vistaHTML);
-          } else if (valor === 3){
-            this.$swal({ type: 'info', text: 'El cliente ya cuenta con un proceso en trámite' });
-          } else if (valor === 4){
-            this.$swal({ type: 'info', text: 'El cliente ha colocado datos que no coinciden con la solicitud' });
-          } else {
-            this.$swal({ type: 'info', text: 'Ooops. Error inesperado.' });
+          // const arrData = await this.GenericService.storeWithToken({
+          //   uri: 'login',
+          //   data: { ...this.formDatosLogin, recaptcha: response },
+          // });
+          const arrData = await this.login({ ...this.formDatosLogin, recaptcha: response });
+          console.log(arrData, 'arrDataarrData');
+          const { flag } = arrData;
+          if (flag === 1) {
+            this.$router.push({ name: "Home" })
+            // await this.$store.dispatch(fuvexTypes.actions.changeView, 'Home');
           }
         } finally {
           // this.onExpired();

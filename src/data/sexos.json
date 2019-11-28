@@ -1,10 +1,10 @@
 [
   {
     "value": "M",
-    "text": "HOMBRE"
+    "text": "MASCULINO"
   },
   {
     "value": "F",
-    "text": "MUJER"
+    "text": "FEMENINO"
   }
 ]

@@ -7,9 +7,10 @@ class AccountService {
 
   async login(credentials) {
     try {
-      const { data: { data: token } } = await this.axios.post('login', credentials);
+      const { data: { token }, data } = await this.axios.post('login', credentials);
+      console.log(data, 'dataaaaaaa services');
       this.axios.defaults.headers.common.Authorization = `Bearer ${token}`;
-      return token;
+      return data;
     } catch (error) {
       this.axios.defaults.headers.common.Authorization = null;
       throw new ServerError(error);
@@ -44,9 +45,9 @@ class AccountService {
 
   async logout() {
     try {
-      if (this.axios.defaults.headers.common.Authorization) {
-        await this.axios.post('logout');
-      }
+      // if (this.axios.defaults.headers.common.Authorization) {
+      //   await this.axios.post('logout');
+      // }
       this.axios.defaults.headers.common.Authorization = null;
     } catch (error) {
       throw new ServerError(error);
