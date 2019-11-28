@@ -126,7 +126,7 @@ export default {
   $accent: #829723;
   $warn: red;
   $suplem: #21b8c6;
-  .page.home .box-bienvenida .box-principal{
+  .page-home .box-bienvenida .box-principal{
       flex: 2.5;
       // background-image: url('/assets/img/home.jpg'); 
       background-repeat: no-repeat;
@@ -137,19 +137,19 @@ export default {
       justify-content: center;
       border-radius: 6px 0 0 6px;
   }
-  .page.home .box-bienvenida .box-principal .box-principal-content{
+  .page-home .box-bienvenida .box-principal .box-principal-content{
       position: absolute;
   }
-  .page.home .box-bienvenida .box-principal h3{
+  .page-home .box-bienvenida .box-principal h3{
       font-size: 30px;
       font-weight: 800;
   }
-  .page.home .box-bienvenida .box-principal .box-cuerpo{
+  .page-home .box-bienvenida .box-principal .box-cuerpo{
       font-size: 20px;
       width: 75%;
       line-height: 1.15;
   }
-  .page.home .box-bienvenida .box-principal::before{
+  .page-home .box-bienvenida .box-principal::before{
       content: "";
       display: block;
       width: 100%;
@@ -161,11 +161,11 @@ export default {
       opacity: 0.6;
       border-radius: 6px 0 0 6px;
   }
-  .page.home .box-bienvenida .box-bienvenida-content{
+  .page-home .box-bienvenida .box-bienvenida-content{
       display: flex;
       color: white;
   }
-  .page.home .box-bienvenida .box-item{
+  .page-home .box-bienvenida .box-item{
       display: flex;
       align-items: center;
       justify-content: center;
@@ -182,22 +182,22 @@ export default {
       -ms-transition: all 0.25s;
       transition: all 0.25s;
   }
-  .page.home .box-bienvenida .box-item:hover{
+  .page-home .box-bienvenida .box-item:hover{
       background: $accent;
       -webkit-box-shadow: 0px 4px 14px 1px rgba(0,0,0,0.2);
       box-shadow: 0px 4px 14px 1px rgba(0,0,0,0.2);
   }
-  .page.home .box-bienvenida .box-agendar-ahora{
+  .page-home .box-bienvenida .box-agendar-ahora{
       flex: 1.6;
       background-color: $primary; 
       background-color: #0084ad;
       background-color: #002678;
   }
-  .page.home .box-bienvenida .box-icono{
+  .page-home .box-bienvenida .box-icono{
       width: 100%;
   }
 
-  .page.home .box-bienvenida .box-historico{
+  .page-home .box-bienvenida .box-historico{
       flex: 1.6;
       border-radius: 0 6px 6px 0;
       background-color: $accent; 
@@ -206,39 +206,39 @@ export default {
       background-color: #056e8f;
       background-color: #0033a0;
   }
-  .page.home .box-bienvenida .box-titulo{
+  .page-home .box-bienvenida .box-titulo{
       width: 100%;
   }
-  .page.home .box-bienvenida .box-titulo > a{
+  .page-home .box-bienvenida .box-titulo > a{
       font-size: 20px;
       font-weight: 800;
       padding-top: 32px;
       color: inherit;
   }
-  .page.home .box-bienvenida .box-titulo > a > img{
+  .page-home .box-bienvenida .box-titulo > a > img{
       height: 32px;
       margin-top: -4px;
       margin-left: -6px;
   }
-  .page.home .box-bienvenida .box-agendar-ahora .box-icono > img{
+  .page-home .box-bienvenida .box-agendar-ahora .box-icono > img{
       height: 75px;
   }
-  .page.home .box-bienvenida .box-historico .box-icono > img{
+  .page-home .box-bienvenida .box-historico .box-icono > img{
       height: 72px;
       padding-bottom: 12px;
   }
 
-  .page.home .box-perfil-paciente{
+  .page-home .box-perfil-paciente{
       margin-top: 5%;
   }
-  .page.home .box-perfil-paciente h2{
+  .page-home .box-perfil-paciente h2{
       text-align: center;
       font-size: 26px;
       font-weight: 700;
       color: $primary; 
       margin-bottom: 3%;
   }
-  .page.home .box-perfil-paciente .box-perfil{
+  .page-home .box-perfil-paciente .box-perfil{
       display: flex;
       align-items: center;
       justify-content: space-evenly;
@@ -249,7 +249,7 @@ export default {
       text-align: center;
       position: relative;
   }
-  .page.home .box-perfil-paciente .box-perfil p{
+  .page-home .box-perfil-paciente .box-perfil p{
       // margin-bottom: 5px;
       // color: $primary;
       margin-bottom: 5px;
@@ -257,11 +257,11 @@ export default {
       color: $accent;
       font-size: 18px;
   }
-  .page.home .box-perfil-paciente .box-perfil .box-item{
+  .page-home .box-perfil-paciente .box-perfil .box-item{
       display: flex;
       min-width: 150px;
   }
-  .page.home .box-perfil-paciente .box-perfil .box-action-edit{
+  .page-home .box-perfil-paciente .box-perfil .box-action-edit{
       position: absolute;
       bottom: -15px;
       background-color: white;
@@ -270,23 +270,23 @@ export default {
       color: $accent;
       font-weight: 600;
   }
-  .page.home .box-perfil-paciente .box-perfil .box-item .box-item-rpta{
+  .page-home .box-perfil-paciente .box-perfil .box-item .box-item-rpta{
       display: flex;
       align-items: flex-end;
       position: relative;
       width: 100%;
       color: #00c9d2;
   }
-  .page.home .box-perfil-paciente .box-perfil img{
+  .page-home .box-perfil-paciente .box-perfil img{
       height: 50px; 
   }
-  .page.home .box-perfil-paciente .box-perfil .box-item-rpta .valor{
+  .page-home .box-perfil-paciente .box-perfil .box-item-rpta .valor{
       margin-left: 4px;
       font-size: 30px;
       font-weight: 400;
       line-height: 0.75;
   }
-  .page.home .box-perfil-paciente .box-perfil .box-item-rpta .pre-valor{
+  .page-home .box-perfil-paciente .box-perfil .box-item-rpta .pre-valor{
       position: absolute;
       top: 0;
       left: 0;
@@ -294,104 +294,104 @@ export default {
       font-size: 12px;
       color: $primary;
   }
-  .page.home .box-perfil-paciente .box-perfil .box-item-rpta .post-valor{
+  .page-home .box-perfil-paciente .box-perfil .box-item-rpta .post-valor{
       font-weight: 200;
       line-height: 1;
       font-size: 16px;
       padding-left: 4px;
   }
-  .page.home .box-acciones .box-btn{
+  .page-home .box-acciones .box-btn{
       text-align: center;
   }
-  .page.home .box-acciones {
+  .page-home .box-acciones {
       margin-bottom: 5%;
   }
   /* Large devices (laptops/desktops, 992px and up) LG */
   @media only screen and (max-width: 1200px) {
-    .page.home .box-bienvenida .box-principal .box-principal-content{
+    .page-home .box-bienvenida .box-principal .box-principal-content{
       padding-left: 10px;
     }
-    .page.home .box-bienvenida .box-principal h3{
+    .page-home .box-bienvenida .box-principal h3{
       font-size: 25px;
     }
-    .page.home .box-bienvenida .box-principal .box-cuerpo {
+    .page-home .box-bienvenida .box-principal .box-cuerpo {
       font-size: 18px;
     }
-    .page.home .box-perfil-paciente .box-perfil img{
+    .page-home .box-perfil-paciente .box-perfil img{
       height: 40px;
     }
-    .page.home .box-perfil-paciente .box-perfil .box-item-rpta .valor {
+    .page-home .box-perfil-paciente .box-perfil .box-item-rpta .valor {
       font-size: 26px;
     }
   }
   @media only screen and (max-width: 960px) {
-    .page.home {
+    .page-home {
           padding-top: 40px;
           margin-right: 60px;
     }
-    .page.home .box-bienvenida .box-principal{
+    .page-home .box-bienvenida .box-principal{
           border-radius: 10px 0 10px 0;
           margin-bottom: 10px;
     }
-    .page.home .box-bienvenida .box-principal::before{
+    .page-home .box-bienvenida .box-principal::before{
       border-radius: 10px 0 10px 0;
     }
-    .page.home .box-bienvenida .box-bienvenida-content{
+    .page-home .box-bienvenida .box-bienvenida-content{
       flex-wrap: wrap;
     }
-    .page.home .box-bienvenida .box-principal{
+    .page-home .box-bienvenida .box-principal{
       width: 100%;
       flex: unset;
       height: 175px;
     }
-    .page.home .box-bienvenida .box-item{
+    .page-home .box-bienvenida .box-item{
       flex: unset;
       width: 100%;
           justify-content: flex-start;
           margin-bottom: 10px;
           border-radius: 10px 0 10px 0;
     }
-    // .page.home .box-bienvenida .box-historico{
+    // .page-home .box-bienvenida .box-historico{
     //  border-radius: 0 0 6px 6px;
     // }
-    .page.home .box-bienvenida .box-principal h3 {
+    .page-home .box-bienvenida .box-principal h3 {
       font-size: 30px;
     }
-    .page.home .box-bienvenida .box-principal .box-cuerpo {
+    .page-home .box-bienvenida .box-principal .box-cuerpo {
       font-size: 20px;
     }
-    .page.home .box-perfil-paciente h2{
+    .page-home .box-perfil-paciente h2{
       font-size: 22px;
     }
-    .page.home .box-perfil-paciente .box-perfil{
+    .page-home .box-perfil-paciente .box-perfil{
       flex-wrap: wrap;
     }
-    .page.home .box-perfil-paciente .box-perfil .box-item{
+    .page-home .box-perfil-paciente .box-perfil .box-item{
       width: 180px;
       min-width: unset;
       padding: 20px;
     }
   }
   @media only screen and (max-width: 600px) {
-      .page.home .box-acciones button{
+      .page-home .box-acciones button{
           margin-bottom: 10px;
           width: 80%;
       }
-      .page.home .box-bienvenida .box-principal h3{
+      .page-home .box-bienvenida .box-principal h3{
           font-size: 20px;
       }
-      .page.home .box-bienvenida .box-principal .box-principal-content{
+      .page-home .box-bienvenida .box-principal .box-principal-content{
           left: 0;
           margin: 10px 20px;
       }
-      .page.home .box-bienvenida .box-item {
+      .page-home .box-bienvenida .box-item {
           font-size: 15px;
           padding: 20px 25px;
       }
-      .page.home .box-bienvenida .box-agendar-ahora .box-icono > img {
+      .page-home .box-bienvenida .box-agendar-ahora .box-icono > img {
           height: 56px;
       }
-      .page.home .box-bienvenida .box-titulo > a{
+      .page-home .box-bienvenida .box-titulo > a{
           padding-top: 18px;
       }
   }
