@@ -44,3 +44,8 @@ export default {
   },
 };
 </script>
+<style lang="scss" scoped="">
+    .k-root{
+        padding-top: 8rem;
+    }
+</style>

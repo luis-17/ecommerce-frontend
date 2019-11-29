@@ -218,7 +218,7 @@ export default {
     background-position: center;
     background-repeat: no-repeat;
     background-size: cover;
-    background-color: #212529;
+    // background-color: #212529;
     width: calc(100% - 30vh);
   }
   .box-lateral-blue{

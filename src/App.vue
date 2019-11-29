@@ -21,11 +21,12 @@
         .box-menu
           ul.box-content-menu
             li
-              a( @click='$router.push({ name: "Home" })' ) INICIO
+              //- router-link(to='/')
+              a( href='javascript:void(0)' @click='$router.push({ name: "Home" })' ) INICIO
             li
-              a( @click='$router.push({ name: "AgendarCita" })' ) AGENDAR CITA
+              a( href='javascript:void(0)' @click='$router.push({ name: "AgendarCita" })' ) AGENDAR CITA
             li
-              a( @click='$router.push({ name: "HistorialCitas" })' ) HISTORIAL
+              a( href='javascript:void(0)' @click='$router.push({ name: "HistorialCitas" })' ) HISTORIAL
         .box-perfil
           .box-perfil-content
             .box-photo
@@ -35,7 +36,7 @@
               .box-info-rol Bienvenido
               .box-info-nickname {{ user.nombres }}
             .logout
-              a.logout-text
+              a.logout-text(href='javascript:void(0)' @click='cerrarSesion')
                 img(src='@/assets/images/icons/shutdown.png')
       template(
         v-else=''
@@ -73,7 +74,7 @@ export default {
     showStepper() {
       this.$store.dispatch(fuvexTypes.actions.showStepper);
     },
-    async logout() {
+    async cerrarSesion() {
       await this.$store.dispatch(accountTypes.actions.logout);
       await this.$store.dispatch(fuvexTypes.actions.closeProcess);
     },
@@ -129,18 +130,73 @@ export default {
   .navbar-brand{
     margin-left: 1rem;
   }
+  .box-perfil{
+
+  }
   .box-perfil-content{
     display: flex;
+    align-items: center;
+    padding-right: 30px;
   }
   .header-nav{
     display: flex;
   }
+  .box-info{
+    display: inline-block;
+    padding: 2px 20px;
+    border-left: 1px solid #e0e0e0;
+    font-weight: 300;
+  }
+  .box-info .box-info-rol{
+    font-weight: bold;
+  }
+  .box-photo{
+    display: flex;
+    padding: 4px 20px;
+  }
+  .box-photo a{
+    border: 3px solid #829723;
+    border-radius: 50%;
+  }
   .box-photo img{
-    width: 48px;
-    border-radius: 48%;
-    height: 48px;
+    height: 40px;
+    border-radius: 50%;
+    width: 40px;
+  }
+  .box-perfil-content .logout{
+    display: inline-block;
+    border-left: 1px solid #e0e0e0;
+    padding: 8px 20px;
+  }
+  .box-perfil-content .logout img{
+    width: auto;
+    height: 26px;
   }
   .box-content-menu{
     display: flex;
+    margin: 0;
+    font-size: 20px;
+    list-style: none;
+  }
+  .box-content-menu li{
+    padding: 12px 20px 12px 12px;
+  }
+  .box-menu{
+    display: flex;
+    flex: 2;
+    align-items: center;
+  }
+  .box-content-menu li a{
+    color: #003d71;
+    transition: all 0.25s;
+    text-decoration: none;
+    font-weight: normal;
+  }
+  .box-content-menu li a.active{
+    color: #829723;
+    font-weight: 600;
+  }
+  .box-content-menu li a:hover{
+    color: #829723;
   }
 </style>

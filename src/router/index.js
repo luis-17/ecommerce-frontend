@@ -24,6 +24,7 @@ import accountTypes from '@/store/types/account';
 Vue.use(Router);
 
 const router = new Router({
+  // linkActiveClass: 'active',
   mode: 'history',
   base: process.env.BASE_URL,
   routes: [

@@ -3,7 +3,7 @@
     .container
       .box-bienvenida.row
         .box-bienvenida-content.col-lg-12
-          .box-principal(style="background-image: url('@/assets/images/home.jpg');")
+          .box-principal
             .box-principal-content
               .box-titulo
                 h3 ¡Bienvenido {{ fPerfil.nombres }}!
@@ -61,11 +61,11 @@
               span.valor {{ fPerfil.edad }}
               span.post-valor AÑOS
           .box-action-edit
-            a(href='' @click='$router.push({ name: "PerfilPaciente" })') Editar tus datos
+            a(href='javascript:void(0)' @click='$router.push({ name: "PerfilPaciente" })') Editar tus datos
       .box-acciones
         .box-btn
           k-button(type='button' @click='$router.push({ name: "HistorialCitas" })') HISTORIAL
-          k-button(type='button' @click='$router.push({ name: "AgendarCita" })') AGENDAR CITA
+          k-button(class='btn-light ml-4' type='button' @click='$router.push({ name: "AgendarCita" })') AGENDAR CITA
 </template>
 
 <script>
@@ -87,6 +87,7 @@ export default {
   },
   data: () => ({
     fPerfil: {
+      estatura: null,
       nombres: null,
       peso: null,
       imc: null,
@@ -129,7 +130,8 @@ export default {
   $suplem: #21b8c6;
   .page-home .box-bienvenida .box-principal{
       flex: 2.5;
-      // background-image: url('/assets/img/home.jpg'); 
+      // background-image: url('/assets/img/home.jpg');
+      background-image: url('/home.jpg');
       background-repeat: no-repeat;
       background-size: cover;
       position: relative;
@@ -172,7 +174,7 @@ export default {
       justify-content: center;
       flex-wrap: wrap;
       padding: 20px 40px;
-      font-size: 16px;
+      font-size: 15px;
       font-weight: 300;
       line-height: 1.15;
       cursor: pointer;
@@ -209,6 +211,7 @@ export default {
   }
   .page-home .box-bienvenida .box-titulo{
       width: 100%;
+      display: flex;
   }
   .page-home .box-bienvenida .box-titulo > a{
       font-size: 20px;
@@ -268,8 +271,10 @@ export default {
       background-color: white;
       font-size: 18px;
       padding: 0 22px;
-      color: $accent;
       font-weight: 600;
+  }
+  .page-home .box-perfil-paciente .box-perfil .box-action-edit a{
+    color: $accent;
   }
   .page-home .box-perfil-paciente .box-perfil .box-item .box-item-rpta{
       display: flex;

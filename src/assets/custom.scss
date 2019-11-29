@@ -1,33 +1,33 @@
-@font-face {
-  font-family: 'Nexa';
-  src:  url('./assets/fonts/Nexa_Bold.otf') format('opentype');
-  font-weight: bold;
-  font-style: normal;
-}
+// @font-face {
+//   font-family: 'Nexa';
+//   src:  url('./assets/fonts/Nexa_Bold.otf') format('opentype');
+//   font-weight: bold;
+//   font-style: normal;
+// }
 
-@font-face {
-  font-family: 'Nexa';
-  src:  url('./assets/fonts/Nexa_Regular.otf') format('opentype');
-  font-weight: 500;
-  font-style: normal;
-}
+// @font-face {
+//   font-family: 'Nexa';
+//   src:  url('./assets/fonts/Nexa_Regular.otf') format('opentype');
+//   font-weight: 500;
+//   font-style: normal;
+// }
 
-@font-face {
-  font-family: 'Nexa';
-  src:  url('./assets/fonts/Nexa_Light.otf') format('opentype');
-  font-weight: 200;
-  font-style: normal;
-}
+// @font-face {
+//   font-family: 'Nexa';
+//   src:  url('./assets/fonts/Nexa_Light.otf') format('opentype');
+//   font-weight: 200;
+//   font-style: normal;
+// }
 
 $theme-colors: (
-  "light": #F4F4F4,
+  "light": #829723,
   "primary": #005794,
 );
 
 $font-size-base: 0.85rem !default;
 $font-weight-base: 500 !default;
 $font-weight-style: normal !default;
-$font-family-base: 'Nexa', sans-serif;
+$font-family-base: 'Mukta', 'Roboto', 'Helvetica Neue';
 
 $input-btn-padding-y: .875rem !default;
 $input-btn-padding-x: 1.25rem !default;
@@ -35,7 +35,11 @@ $input-color: #000;
 $custom-checkbox-indicator-border-radius: 0;
 
 body{
-  color: #5a5a5a !important;
+  // color: #5a5a5a !important;
+  color: #607d8b;
+}
+a{
+  text-decoration: none !important;
 }
 :focus {
     outline: none;
@@ -46,7 +50,7 @@ body{
   // background-position: center;
   // background-repeat: no-repeat;
   // background-size: cover;
-  // background-color: #212529;
+  color: #607d8b;
 }
 .custom-control-label{
   color: #a6a6a6;
