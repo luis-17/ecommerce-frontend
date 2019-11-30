@@ -77,6 +77,7 @@ export default {
     async cerrarSesion() {
       await this.$store.dispatch(accountTypes.actions.logout);
       await this.$store.dispatch(fuvexTypes.actions.closeProcess);
+      this.$router.push({ name: 'Inicio' });
     },
     INTERVAL__9000$ping() {
       // if (this.user.username) {

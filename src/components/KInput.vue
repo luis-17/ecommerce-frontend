@@ -212,7 +212,7 @@ export default {
     },
     genPasswordButton() {
       return this.$createElement('button', {
-        staticClass: 'btn btn-light ',
+        staticClass: 'btn ',
         attrs: {
           tabindex: '-1',
           type: 'button',
@@ -363,5 +363,9 @@ export default {
   }
   .input-group .input-group-append label{
     margin: 0;
+  }
+  .input-group-append button{
+    padding: 1px 6px;
+    width: 3.25rem;
   }
 </style>

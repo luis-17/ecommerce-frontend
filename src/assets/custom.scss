@@ -25,7 +25,7 @@ $theme-colors: (
 );
 
 $font-size-base: 0.85rem !default;
-$font-weight-base: 500 !default;
+$font-weight-base: 400 !default;
 $font-weight-style: normal !default;
 $font-family-base: 'Mukta', 'Roboto', 'Helvetica Neue';
 
@@ -37,6 +37,7 @@ $custom-checkbox-indicator-border-radius: 0;
 body{
   // color: #5a5a5a !important;
   color: #607d8b;
+  // font-weight: 400;
 }
 a{
   text-decoration: none !important;
