@@ -21,7 +21,6 @@
         .box-menu
           ul.box-content-menu
             li
-              //- router-link(to='/')
               a( href='javascript:void(0)' @click='$router.push({ name: "Home" })' ) INICIO
             li
               a( href='javascript:void(0)' @click='$router.push({ name: "AgendarCita" })' ) AGENDAR CITA
@@ -30,7 +29,7 @@
         .box-perfil
           .box-perfil-content
             .box-photo
-              a( @click='$router.push({ name: "PerfilPaciente" })')
+              a( href='javascript:void(0);' @click='$router.push({ name: "PerfilPaciente" })')
                 img(src='@/assets/images/default.jpg')
             .box-info
               .box-info-rol Bienvenido

@@ -155,6 +155,9 @@ export default {
 <style lang="scss" scoped="">
   // @import 'src/var.scss';
   /* Historial page */
+  .page-historial{
+    padding-top: 4rem;
+  }
   .page-historial .box-tabs .box-tab-group{
     display: flex;
       justify-content: center;

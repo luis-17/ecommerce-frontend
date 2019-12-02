@@ -128,6 +128,9 @@ export default {
   $accent: #829723;
   $warn: red;
   $suplem: #21b8c6;
+  .page-home{
+    padding-top: 4rem;
+  }
   .page-home .box-bienvenida .box-principal{
       flex: 2.5;
       // background-image: url('/assets/img/home.jpg');

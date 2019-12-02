@@ -16,6 +16,7 @@ import Home from '@/views/In/Home.vue';
 import AgendarCita from '@/views/In/AgendarCita.vue';
 import HistorialCitas from '@/views/In/HistorialCitas.vue';
 import PerfilPaciente from '@/views/In/PerfilPaciente.vue';
+import RegistrarFamiliar from '@/views/In/RegistrarFamiliar.vue';
 // end: In
 
 import { store } from '@/store';
@@ -94,9 +95,22 @@ const router = new Router({
           path: 'perfil-de-paciente',
           name: 'PerfilPaciente',
           component: PerfilPaciente,
-          props: true,
+          // props: true,
           meta: { Auth: true },
+          children: [{
+            path: 'registrar-familiar',
+            name: 'RegistrarFamiliar',
+            component: RegistrarFamiliar,
+            props: true,
+            meta: { Auth: true },
+          }],
         },
+        // {
+        //   path: '/registrar-familiar',
+        //   name: 'RegistrarFamiliar',
+        //   component: RegistrarFamiliar,
+        //   meta: { Auth: true },
+        // },
       ],
     },
   ],

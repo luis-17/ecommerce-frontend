@@ -213,7 +213,8 @@ export default {
     margin-bottom: 2rem;
   }
   .page-login{
-    min-height: calc(100vh - 63px);
+    // min-height: calc(100vh - 63px);
+    min-height: calc(100vh);
     background-image: url('../assets/images/bg-app.jpg');
     background-position: center;
     background-repeat: no-repeat;
@@ -225,7 +226,7 @@ export default {
     background-color: #005794;
     float: right;
     width: 30vh;
-    height: calc(100vh - 63px);
+    height: calc(100vh);
     margin-right: -30vh;
     position: relative;
   }
