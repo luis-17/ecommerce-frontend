@@ -197,9 +197,9 @@ export default {
         this.$wait.start('global');
         // this.formDatosCita.idmedico = null;
         // this.formDatosCita.medico = null;
-        if(this.formDatosCita.idmedico){
-          await this.loadFechasProgramadas();
-        }
+        // if(this.formDatosCita.idmedico){
+        await this.loadFechasProgramadas();
+        // }
        
         await Vue.nextTick();
         // this.errors.remove('idmedico', 'formDatosCita');
@@ -311,21 +311,51 @@ export default {
       this.selectedIdCita = idcita;
     },
     async loadMedicosPorEsp() {
-      const { datos } = await this.GenericService.store({
-        uri: 'platform/cargar_medicos_por_especialidad',
-        data: {
-          idespecialidad: this.formDatosCita.idespecialidad,
-          periodo: this.formDatosCita.periodoActual,
-        },
-      });
-      if (datos) {
+      // console.log();
+      try{
+        this.$wait.start('global');
+        const { datos } = await this.GenericService.store({
+          uri: 'platform/cargar_medicos_por_especialidad',
+          data: {
+            idespecialidad: this.formDatosCita.idespecialidad,
+            periodo: this.formDatosCita.periodoActual,
+          },
+        });
         this.medicos = datos.map(d => ({
           value: d.idmedico,
           text: d.descripcion,
           raw: d,
         }));
         this.formDatosCita.idmedico = this.medicos[0].value;
+      } catch (err) {
+        this.$swal({ type: err.type, text: err.message });
+        this.medicos = [];
+        const mockDatos = await this.GenericService.store({
+          uri: 'platform/cargar_fechas_mock',
+        });
+        if (mockDatos.datos) {
+          this.arrCalendario.mes = mockDatos.datos.mes;
+          this.arrCalendario.periodoAnterior = mockDatos.datos.periodoAnterior;
+          this.arrCalendario.periodoSiguiente = mockDatos.datos.periodoSiguiente;
+          this.arrCalendario.calendario = mockDatos.datos.calendario;
+        }
+      } finally {
+        this.$wait.end('global');
       }
+      
+      // console.log('antes');
+      // if (datos && flag === 1) {
+      //   console.log(datos, flag, 'datos, flag');
+      //   this.medicos = datos.map(d => ({
+      //     value: d.idmedico,
+      //     text: d.descripcion,
+      //     raw: d,
+      //   }));
+      //   this.formDatosCita.idmedico = this.medicos[0].value;
+      // }else{
+      //   console.log('elsee xd');
+      //   this.medicos = [];
+      // }
     },
     async loadFechasProgramadas() {
       const { datos } = await this.GenericService.store({

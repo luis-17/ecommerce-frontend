@@ -10,7 +10,7 @@
               .box-cuerpo AGENDA TU CITA ONLINE, <br> ASÍ DE RÁPIDO
               .box-mini-icono
                 img(alt='Adelante...' src='@/assets/images/icons/go.png')
-          .box-item.box-agendar-ahora( @click='$router.push({ name: "Home" })' )
+          .box-item.box-agendar-ahora( @click='$router.push({ name: "AgendarCita" })' )
             .box-icono
               img(alt='Agendar Cita' src='@/assets/images/icons/hospital.svg')
             .box-cuerpo Escoge tu especialidad, turno y médico favorito en la fecha que desees y ¡LISTO!
