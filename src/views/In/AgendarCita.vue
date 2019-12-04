@@ -71,7 +71,7 @@
               .item-semana Sab.
             .box-dias
               .box-row(v-for='(row, index) in arrCalendario.calendario')
-                .box-dia(v-bind:class='rowDet.class' v-for='(rowDet, indexDet) in row') {{ rowDet.dia }}
+                .box-dia( @click='openDialogTurno(rowDet.fecha,rowDet.class)' v-bind:class='rowDet.class' v-for='(rowDet, indexDet) in row') {{ rowDet.dia }}
           .box-leyenda
             .box-item-leyenda
               .box-cuadro.active
@@ -102,6 +102,11 @@
               p {{ formDatosCita.fechaCita }} / {{ formDatosCita.horaCita }}
           .box-action
             k-button(type='button' @click='confirmarCita') CONFIRMAR CITA
+      eleccion-turno(
+        :show.sync='isModalTurno'
+        :textTitle='"Seleccione la hora deseada"'
+        @confirm='onConfirm')
+
 </template>
 
 <script>
@@ -114,13 +119,16 @@ import { mapTaco } from '@/common/util';
 import vueinterval from 'vue-interval/dist/VueInterval.common';
 
 import Confirm from '@/views/In/Components/Confirm.vue';
+import EleccionTurno from '@/views/In/Components/EleccionTurno.vue';
 export default {
   name: 'AgendarCita',
   dependencies: ['AccountService', 'GenericService'],
   components: {
     Confirm,
+    EleccionTurno,
   },
   data: () => ({
+    isModalTurno: false,
     pacientes: [],
     especialidades: [],
     medicos: [],
@@ -165,10 +173,10 @@ export default {
       }
     },
     'formDatosCita.idespecialidad': async function (newValue) {
-      console.log(newValue, 'newValue especialidad');
-      console.log(parseInt(newValue), 'parseInt(newValue) ');
+      // console.log(newValue, 'newValue especialidad');
+      // console.log(parseInt(newValue), 'parseInt(newValue) ');
       const findEspec = this.especialidades.find(e => e.value === parseInt(newValue));
-      console.log(findEspec, 'findEspec');
+      // console.log(findEspec, 'findEspec');
       // console.log(findEspec.raw, 'findEspec.raw');
       if (findEspec) {
         this.formDatosCita.especialidad = findEspec.raw.descripcion;
@@ -304,6 +312,13 @@ export default {
       },
       async confirmarCita() {
 
+      },
+      async openDialogTurno(fecha, clase) {
+        if(!(clase.trim() === 'active')){
+          return false;
+        }
+        this.formDatosCita.fechaCita = fecha;
+        this.isModalTurno = true;
       },
     }),
     async openConfirmAnularCita(idcita) {

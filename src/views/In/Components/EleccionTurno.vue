@@ -1,0 +1,164 @@
+<template lang="pug">
+  div
+    k-modal(
+      v-if='isModalTurno'
+      @close='$emit("update:show", false)')
+      .header-modal.text-center
+        .mx-auto.w-75
+          .box-letter.pb-3 {{ strTextTitle }}
+      .body-modal
+        .box-turnos
+          .box-content-turnos
+            .box-turno
+              .box-eleccion
+                label(v-for='')
+                  k-button-radio(
+                    :label='row.hora_inicio'
+                    :data-vv-as='row.hora_inicio'
+                    name='turno'
+                    value='row'
+                    v-validate='"required"'
+                    :error='errors.first("formCuentaAhorros.turno")'
+                    v-model='formCuentaAhorros.turno'
+                    v-on:change="onChangeCuentaAhorros")
+      .k-button-layout
+        k-button(@click='regresar' class='btn-light btn-sm') REGRESAR
+        k-button(@click='$emit("confirm")' class='btn-sm') ELEGIR
+</template>
+
+<script>
+import { mapWrapper } from '@/common/taco';
+
+export default {
+  name: 'EleccionTurno',
+  dependencies: ['CommonService', 'GenericService'],
+  props: {
+    show: {
+      type: Boolean,
+      default: false,
+    },
+    textTitle: {
+      type: String,
+      default: null,
+    },
+  },
+  data: () => ({
+    strTextTitle: null,
+    isModalTurno: false,
+  }),
+  async created() {
+    // console.log(this.textTitle, 'this.textTitle');
+    this.strTextTitle = this.textTitle;
+  },
+  computed: {
+    // isOtrosSelected() {
+    //   return this.formReject.reasonsRejection.find(r => r.checked && r.descripcion === 'OTROS');
+    // },
+  },
+  watch: {
+    show(newValue) {
+      this.isModalTurno = newValue;
+    },
+  },
+  methods: {
+    regresar() {
+      this.isModalTurno = false;
+    },
+  },
+};
+</script>
+<style lang="scss" scoped="">
+  .box-turnos{
+      min-height: 200px;
+  }
+  .box-eleccion {
+      margin: 16px 0 0;
+  }
+  .box-eleccion .rb-turno {
+      width: auto;
+      margin: 8px;
+      padding: 10px 20px;
+      background-color: rgba(1, 87, 155, 0.09);
+      border-radius: 10px;
+      font-size: 16px;
+      color: #b1b1b1;
+  }
+  .box-eleccion .rb-turno.mat-radio-checked{
+      background-color: #21b8c6;
+      color: white;
+  }
+  .box-eleccion .rb-turno label{
+      margin: 0;
+  }
+  .box-turnos .box-action{
+      display: flex;
+      justify-content: center;
+      padding: 25px 20px 0;
+  }
+  .box-turnos .box-action button{
+      min-width: 200px;
+  }
+
+  .box-turnos label{
+      // display: block;
+      position: relative;
+      padding-left: 35px;
+      margin-bottom: 12px;
+      cursor: pointer;
+      font-size: 22px;
+      -webkit-user-select: none;
+      -moz-user-select: none;
+      -ms-user-select: none;
+      user-select: none;
+      width: 110px;
+  }
+  /* Hide the browser's default radio button */
+  .box-turnos label input {
+      position: absolute;
+      opacity: 0;
+      cursor: pointer;
+  }
+  
+  /* Create a custom radio button */
+  .box-turnos label .checkmark {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 25px;
+    width: 25px;
+    background-color: #eee;
+    border-radius: 50%;
+  }
+  
+  /* On mouse-over, add a grey background color */
+  .box-turnos label:hover input ~ .checkmark {
+    background-color: #ccc;
+  }
+  
+  /* When the radio button is checked, add a blue background */
+  .box-turnos label input:checked ~ .checkmark {
+    background-color: #21B8C6;
+  }
+  
+  /* Create the indicator (the dot/circle - hidden when not checked) */
+  .box-turnos label .checkmark:after {
+    content: "";
+    position: absolute;
+    display: none;
+  }
+  
+  /* Show the indicator (dot/circle) when checked */
+  .box-turnos label input:checked ~ .checkmark:after {
+    display: block;
+  }
+  
+  /* Style the indicator (dot/circle) */
+  .box-turnos label .checkmark:after {
+      top: 9px;
+      left: 9px;
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: white;
+  }
+</style>
