@@ -2,7 +2,7 @@
   .page.cita
     .container
       .row
-        section.box-filtros
+        section.box-filtros(:class='paso1')
           form(
             novalidate=''
             data-vv-scope='formDatosCita')
@@ -51,7 +51,7 @@
                   :options='garantes')
               //- k-button-layout.mt-3
               //-   k-button(type='submit') PROCESAR
-        section.box-calendario
+        section.box-calendario(:class='paso2')
           h4 <strong> PASO 2: </strong> Elija su turno
           .box-content-calendario
             .box-title-mes
@@ -71,7 +71,7 @@
               .item-semana Sab.
             .box-dias
               .box-row(v-for='(row, index) in arrCalendario.calendario')
-                .box-dia( @click='openDialogTurno(rowDet.fecha,rowDet.class)' v-bind:class='rowDet.class' v-for='(rowDet, indexDet) in row') {{ rowDet.dia }}
+                .box-dia( @click='openDialogTurno(rowDet.fecha,rowDet.class, indexDet, index)' v-bind:class='[rowDet.class]' v-for='(rowDet, indexDet) in row') {{ rowDet.dia }}
           .box-leyenda
             .box-item-leyenda
               .box-cuadro.active
@@ -82,7 +82,7 @@
             .box-item-leyenda
               .box-cuadro.selected
               .box-label SELECCIONADO
-        section.box-confirmacion
+        section.box-confirmacion(:class='paso3')
           h4 <strong> PASO 3: </strong> Confirmación
           .box-resumen
             .box-group
@@ -105,7 +105,8 @@
       eleccion-turno(
         :show.sync='isModalTurno'
         :textTitle='"Seleccione la hora deseada"'
-        @confirm='onConfirm')
+        :arrHorario='arrHorario'
+        @elegirCita='onElegirCita')
 
 </template>
 
@@ -128,11 +129,15 @@ export default {
     EleccionTurno,
   },
   data: () => ({
+    paso1: 'section-active',
+    paso2: 'section-inactive',
+    paso3: 'section-inactive',
     isModalTurno: false,
     pacientes: [],
     especialidades: [],
     medicos: [],
     garantes: [],
+    arrHorario: [],
     arrCalendario: {
       mes: null,
       periodoAnterior: null,
@@ -164,8 +169,12 @@ export default {
     // ...mapGetters({
     //   user: accountTypes.getters.getUser,
     // }),
+    isSelectedFecha(row){
+      return this.formDatosCita.fechaCita === row.fecha;
+    },
   },
   watch: {
+    $route: 'fetchData',
     'formDatosCita.idpaciente': function (newValue) {
       const findPaciente = this.pacientes.find(e => e.value === newValue);
       if (findPaciente) {
@@ -206,10 +215,11 @@ export default {
         // this.formDatosCita.idmedico = null;
         // this.formDatosCita.medico = null;
         // if(this.formDatosCita.idmedico){
+        await Vue.nextTick();
         await this.loadFechasProgramadas();
         // }
        
-        await Vue.nextTick();
+        // await Vue.nextTick();
         // this.errors.remove('idmedico', 'formDatosCita');
       } catch (err) {
         this.$swal({ type: err.type, text: err.message });
@@ -313,12 +323,56 @@ export default {
       async confirmarCita() {
 
       },
-      async openDialogTurno(fecha, clase) {
-        if(!(clase.trim() === 'active')){
+      async onElegirCita(params) {
+        // console.log(params, 'params aqui horariooo');
+        const strInicio = this.timeToDecimal(params.turno.hora_inicio);
+        const strFin = this.timeToDecimal(params.turno.hora_fin);
+        const strDuracionCita = (strFin - strInicio) * 60;
+        this.formDatosCita.horaInicio = params.turno.hora_inicio;
+        this.formDatosCita.horaCita = params.turno.hora_inicio;
+        this.formDatosCita.idhorario = params.turno.idhorario;
+        this.formDatosCita.horaFin = params.turno.hora_fin;
+        this.formDatosCita.duracionCita = strDuracionCita;
+        this.paso3 = 'section-active';
+      },
+      async openDialogTurno(fecha, clase, idx, idxParent) {
+        // console.log(idx, 'idx');
+        // console.log(clase.trim(), 'clase.trim()');
+        if(!(clase.includes('active'))){
           return false;
         }
-        this.formDatosCita.fechaCita = fecha;
-        this.isModalTurno = true;
+        try{
+          this.$wait.start('global');
+          await Vue.nextTick();
+          this.formDatosCita.fechaCita = fecha;
+          this.arrCalendario.calendario[idxParent][idx].class = this.arrCalendario.calendario[idxParent][idx].class + ' selected';
+          this.isModalTurno = true;
+          const { datos } = await this.GenericService.store({
+            uri: 'platform/cargar_horario',
+            data: {
+              idespecialidad: this.formDatosCita.idespecialidad,
+              idmedico: this.formDatosCita.idmedico,
+              fecha: this.formDatosCita.fechaCita,
+            },
+          });
+          if (datos) {
+            this.arrHorario = datos;
+          }
+        }catch (err) {
+          this.$swal({ type: err.type, text: err.message });
+          this.arrHorario = [];
+          this.isModalTurno = false;
+          this.arrCalendario.calendario[idxParent][idx].class = ' active';
+          this.formDatosCita.fechaCita = null;
+          this.formDatosCita.horaInicio = null;
+          this.formDatosCita.horaCita = null;
+          this.formDatosCita.idhorario = null;
+          this.formDatosCita.horaFin = null;
+          this.formDatosCita.duracionCita = null;
+        }finally{
+          this.$wait.end('global');
+        }
+        
       },
     }),
     async openConfirmAnularCita(idcita) {
@@ -336,12 +390,14 @@ export default {
             periodo: this.formDatosCita.periodoActual,
           },
         });
+        await Vue.nextTick();
         this.medicos = datos.map(d => ({
           value: d.idmedico,
           text: d.descripcion,
           raw: d,
         }));
         this.formDatosCita.idmedico = this.medicos[0].value;
+        this.paso2 = 'section-active';
       } catch (err) {
         this.$swal({ type: err.type, text: err.message });
         this.medicos = [];
@@ -395,6 +451,12 @@ export default {
     async onNextPeriodo(){
       this.formDatosCita.periodoActual = this.arrCalendario.periodoSiguiente;
     },
+    timeToDecimal(time) {
+      const hoursMinutes = time.split(':');
+      const hours = parseInt(hoursMinutes[0], 10);
+      const minutes = hoursMinutes[1] ? parseInt(hoursMinutes[1], 10) : 0;
+      return hours + minutes / 60;
+    }
   },
 };
 </script>

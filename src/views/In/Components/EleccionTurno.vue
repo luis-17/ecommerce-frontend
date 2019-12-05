@@ -1,29 +1,30 @@
 <template lang="pug">
   div
-    k-modal(
-      v-if='isModalTurno'
-      @close='$emit("update:show", false)')
+    k-modal(v-if='isModalTurno' @close='$emit("update:show", false)')
       .header-modal.text-center
-        .mx-auto.w-75
-          .box-letter.pb-3 {{ strTextTitle }}
+        .mx-auto
+          h2.box-letter.pb-3 {{ strTextTitle }}
       .body-modal
         .box-turnos
           .box-content-turnos
             .box-turno
               .box-eleccion
-                label(v-for='')
+                //- form(
+                //-   :key='componentKey'
+                //-   novalidate=''
+                //-   @submit.prevent='onDatosSubrogado'
+                //-   data-vv-scope='formDatosSubrogado')
+                label(v-for='(item, index) in arrHorario')
                   k-button-radio(
-                    :label='row.hora_inicio'
-                    :data-vv-as='row.hora_inicio'
-                    name='turno'
-                    value='row'
-                    v-validate='"required"'
-                    :error='errors.first("formCuentaAhorros.turno")'
-                    v-model='formCuentaAhorros.turno'
-                    v-on:change="onChangeCuentaAhorros")
-      .k-button-layout
-        k-button(@click='regresar' class='btn-light btn-sm') REGRESAR
-        k-button(@click='$emit("confirm")' class='btn-sm') ELEGIR
+                    :label='item.hora_inicio'
+                    name='hora_inicio'
+                    :value='item.hora_inicio'
+                    v-on:change="onChangeHorarios(item)")
+                  //- span.checkmark
+      .k-button-layout.text-center
+        k-button(@click='elegirTurno' type='button' class='btn-sm') ELEGIR
+        k-button(@click='regresar' type='link' class='') REGRESAR
+        
 </template>
 
 <script>
@@ -41,19 +42,21 @@ export default {
       type: String,
       default: null,
     },
+    arrHorario: {
+      type: Array,
+      required: true,
+    },
   },
   data: () => ({
     strTextTitle: null,
     isModalTurno: false,
+    selectedTurno: null,
   }),
   async created() {
-    // console.log(this.textTitle, 'this.textTitle');
     this.strTextTitle = this.textTitle;
   },
   computed: {
-    // isOtrosSelected() {
-    //   return this.formReject.reasonsRejection.find(r => r.checked && r.descripcion === 'OTROS');
-    // },
+    
   },
   watch: {
     show(newValue) {
@@ -61,8 +64,29 @@ export default {
     },
   },
   methods: {
-    regresar() {
-      this.isModalTurno = false;
+    ...mapWrapper({
+      async elegirTurno() {
+        console.log(this.selectedTurno, 'this.selectedTurno');
+        if(!this.selectedTurno){
+          this.$swal({
+            type: 'warning',
+            text: 'Seleccione un turno para reservar su cita.',
+          });
+          return;
+        }
+        this.$emit('elegirCita', {
+          turno: this.selectedTurno,
+        });
+        this.$emit("update:show", false);
+      },
+      async onChangeHorarios(item) {
+        console.log(item, 'itemitem');
+        this.selectedTurno = item;
+      },
+    }),
+    async regresar() {
+      this.$emit("update:show", false);
+      this.selectedTurno = null;
     },
   },
 };
@@ -72,7 +96,23 @@ export default {
       min-height: 200px;
   }
   .box-eleccion {
-      margin: 16px 0 0;
+    margin: 1.75rem 0 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+  .k-button, 
+  .k-button-layout .k-button + .k-button{
+    margin: auto;
+    display: block;
+  }
+  h2{
+    color: #829723;
+    font-size: 1.3rem;
+    text-transform: uppercase;
+    border-bottom: 1px solid #e0e0e0;
+    padding-bottom: 1rem;
   }
   .box-eleccion .rb-turno {
       width: auto;
@@ -102,7 +142,7 @@ export default {
   .box-turnos label{
       // display: block;
       position: relative;
-      padding-left: 35px;
+      // padding-left: 35px;
       margin-bottom: 12px;
       cursor: pointer;
       font-size: 22px;
