@@ -14,10 +14,10 @@
                   :label='"LA CITA ES PARA:"'
                   :placeholder='"LA CITA ES PARA:"'
                   :data-vv-as='"LA CITA ES PARA:"'
-                  name='idpaciente'
+                  name='idcliente'
                   v-validate='"required"'
-                  :error='errors.first("formDatosCita.idpaciente")'
-                  v-model='formDatosCita.idpaciente'
+                  :error='errors.first("formDatosCita.idcliente")'
+                  v-model='formDatosCita.idcliente'
                   :options='pacientes')
               .col-12
                 k-select(
@@ -99,7 +99,7 @@
               p {{ formDatosCita.garante }}
             .box-group
               .box-label FECHA/TURNO
-              p {{ formDatosCita.fechaCita }} / {{ formDatosCita.horaCita }}
+              p {{ formDatosCita.fecha_cita }} / {{ formDatosCita.horaCita }}
           .box-action
             k-button(type='button' @click='confirmarCita') CONFIRMAR CITA
       eleccion-turno(
@@ -107,6 +107,10 @@
         :textTitle='"Seleccione la hora deseada"'
         :arrHorario='arrHorario'
         @elegirCita='onElegirCita')
+      confirm(
+        :show.sync='showConfirm'
+        :textTitle='"¿Está seguro de reservar la cita?"'
+        @confirm='onConfirm')
 
 </template>
 
@@ -132,6 +136,7 @@ export default {
     paso1: 'section-active',
     paso2: 'section-inactive',
     paso3: 'section-inactive',
+    showConfirm: false,
     isModalTurno: false,
     pacientes: [],
     especialidades: [],
@@ -146,7 +151,7 @@ export default {
     },
     formDatosCita: {
       paciente: null,
-      idpaciente: null,
+      idcliente: null,
       idmedico: null,
       medico: null,
       idespecialidad: null,
@@ -154,10 +159,10 @@ export default {
       garante: null,
       idgarante: null,
       idhorario: null,
-      horaInicio: null,
-      horaFin: null,
+      hora_inicio: null,
+      hora_fin: null,
       duracionCita: null,
-      fechaCita: null,
+      fecha_cita: null,
       horaCita: null,
       periodoActual: (moment().format('Y') + moment().format('MM')).toString(),
     },
@@ -170,12 +175,12 @@ export default {
     //   user: accountTypes.getters.getUser,
     // }),
     isSelectedFecha(row){
-      return this.formDatosCita.fechaCita === row.fecha;
+      return this.formDatosCita.fecha_cita === row.fecha;
     },
   },
   watch: {
     $route: 'fetchData',
-    'formDatosCita.idpaciente': function (newValue) {
+    'formDatosCita.idcliente': function (newValue) {
       const findPaciente = this.pacientes.find(e => e.value === newValue);
       if (findPaciente) {
         this.formDatosCita.paciente = findPaciente.raw.paciente;
@@ -302,36 +307,49 @@ export default {
         }
       },
       async onConfirm() {
-        await this.GenericService.store({
+        this.formDatosCita.fecha_cita = moment(this.formDatosCita.fecha_cita,'DD-MM-YYYY').format('YYYY-MM-DD');
+        const { flag } = await this.GenericService.store({
           uri: 'platform/registrar_cita',
           data: {
-            idcita: this.selectedIdCita,
+            ...this.formDatosCita,
           },
         });
-        this.$swal({
-          type: 'success',
-          title: 'Se registró la cita correctamente',
-          timer: 3000,
-        }).then(() => {
-          this.$router.push({ name: 'HistorialCitas' });
-          // this.$router.go();
-          // this.showConfirm = false;
-          // this.selectedIdCita = null;
-          // this.fetchData();
-        });
+        // console.log(flag, 'flagflagflag');
+        if(flag === 1){
+          this.$swal({ type: 'success', text: 'Se registró la cita correctamente', timer: 3000 }).then(() => {
+            this.$router.push({ name: 'HistorialCitas' });
+          });
+        }
+        if(flag === 0){
+          this.$swal({ type: 'error', text: 'Ocurrió un error al registrar la cita. Inténtelo nuevamente.', timer: 3000 });
+          return;
+        }
+        
       },
       async confirmarCita() {
-
+        if(!this.formDatosCita.idcliente){
+          this.$swal({ type: 'warning', text: 'Falta seleccionar paciente' });
+          return;
+        }
+        if(!this.formDatosCita.idgarante){
+          this.$swal({ type: 'warning', text: 'Falta seleccionar convenio' });
+          return;
+        }
+        if(!this.formDatosCita.idhorario){
+          this.$swal({ type: 'warning', text: 'Falta seleccionar horario' });
+          return;
+        }
+        this.showConfirm = true;
       },
       async onElegirCita(params) {
         // console.log(params, 'params aqui horariooo');
         const strInicio = this.timeToDecimal(params.turno.hora_inicio);
         const strFin = this.timeToDecimal(params.turno.hora_fin);
         const strDuracionCita = (strFin - strInicio) * 60;
-        this.formDatosCita.horaInicio = params.turno.hora_inicio;
+        this.formDatosCita.hora_inicio = params.turno.hora_inicio;
         this.formDatosCita.horaCita = params.turno.hora_inicio;
         this.formDatosCita.idhorario = params.turno.idhorario;
-        this.formDatosCita.horaFin = params.turno.hora_fin;
+        this.formDatosCita.hora_fin = params.turno.hora_fin;
         this.formDatosCita.duracionCita = strDuracionCita;
         this.paso3 = 'section-active';
       },
@@ -344,7 +362,7 @@ export default {
         try{
           this.$wait.start('global');
           await Vue.nextTick();
-          this.formDatosCita.fechaCita = fecha;
+          this.formDatosCita.fecha_cita = fecha;
           this.arrCalendario.calendario[idxParent][idx].class = this.arrCalendario.calendario[idxParent][idx].class + ' selected';
           this.isModalTurno = true;
           const { datos } = await this.GenericService.store({
@@ -352,7 +370,7 @@ export default {
             data: {
               idespecialidad: this.formDatosCita.idespecialidad,
               idmedico: this.formDatosCita.idmedico,
-              fecha: this.formDatosCita.fechaCita,
+              fecha: this.formDatosCita.fecha_cita,
             },
           });
           if (datos) {
@@ -363,11 +381,11 @@ export default {
           this.arrHorario = [];
           this.isModalTurno = false;
           this.arrCalendario.calendario[idxParent][idx].class = ' active';
-          this.formDatosCita.fechaCita = null;
-          this.formDatosCita.horaInicio = null;
+          this.formDatosCita.fecha_cita = null;
+          this.formDatosCita.hora_inicio = null;
           this.formDatosCita.horaCita = null;
           this.formDatosCita.idhorario = null;
-          this.formDatosCita.horaFin = null;
+          this.formDatosCita.hora_fin = null;
           this.formDatosCita.duracionCita = null;
         }finally{
           this.$wait.end('global');
@@ -375,10 +393,10 @@ export default {
         
       },
     }),
-    async openConfirmAnularCita(idcita) {
-      this.showConfirm = !this.showConfirm;
-      this.selectedIdCita = idcita;
-    },
+    // async openConfirmAnularCita(idcita) {
+    //   this.showConfirm = !this.showConfirm;
+    //   this.selectedIdCita = idcita;
+    // },
     async loadMedicosPorEsp() {
       // console.log();
       try{

@@ -54,7 +54,8 @@ export default {
   },
   methods: {
     regresar() {
-      this.showConfirm = false;
+      this.$emit("update:show", false);
+      // this.showConfirm = false;
     },
   },
 };
