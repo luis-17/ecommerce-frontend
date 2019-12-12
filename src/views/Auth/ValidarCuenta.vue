@@ -63,5 +63,6 @@ export default {
   p {
     font-size: 16px;
     text-align: center;
+    font-weight: 400;
   }
 </style>

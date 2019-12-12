@@ -148,6 +148,8 @@ export default {
       periodoAnterior: null,
       periodoSiguiente: null,
       calendario: [],
+      // idxSelected: null,
+      // idxDetSelected: null,
     },
     formDatosCita: {
       paciente: null,
@@ -238,14 +240,13 @@ export default {
         this.formDatosCita.garante = findGarante.raw.descripcion_gar;
       }
     },
-    'formDatosCita.periodoActual': async function (newValue) {
+    'formDatosCita.periodoActual': async function (newValue, oldValue) {
       // cargamos programaciones
       try {
         this.$wait.start('global');
         this.formDatosCita.idmedico = null;
         this.formDatosCita.medico = null;
         await this.loadMedicosPorEsp();
-        // await this.loadFechasProgramadas();
         await Vue.nextTick();
         this.errors.remove('idmedico', 'formDatosCita');
       } catch (err) {
@@ -363,6 +364,13 @@ export default {
           this.$wait.start('global');
           await Vue.nextTick();
           this.formDatosCita.fecha_cita = fecha;
+          this.arrCalendario.calendario.map((rowParent,index) => {
+            rowParent.map((rowChild, indexChild) => {
+              if(this.arrCalendario.calendario[index][indexChild].class.includes('selected')){
+                this.arrCalendario.calendario[index][indexChild].class = 'active';
+              }
+            });
+          });
           this.arrCalendario.calendario[idxParent][idx].class = this.arrCalendario.calendario[idxParent][idx].class + ' selected';
           this.isModalTurno = true;
           const { datos } = await this.GenericService.store({
@@ -414,13 +422,17 @@ export default {
           text: d.descripcion,
           raw: d,
         }));
-        this.formDatosCita.idmedico = this.medicos[0].value;
+        setTimeout(() => this.formDatosCita.idmedico = this.medicos[0].value, 10);
+        // ;
         this.paso2 = 'section-active';
       } catch (err) {
         this.$swal({ type: err.type, text: err.message });
         this.medicos = [];
         const mockDatos = await this.GenericService.store({
           uri: 'platform/cargar_fechas_mock',
+          data: {
+            periodo: this.formDatosCita.periodoActual,
+          },
         });
         if (mockDatos.datos) {
           this.arrCalendario.mes = mockDatos.datos.mes;
@@ -447,6 +459,9 @@ export default {
       // }
     },
     async loadFechasProgramadas() {
+      if(!this.formDatosCita.idmedico){
+        return;
+      }
       const { datos } = await this.GenericService.store({
         uri: 'platform/cargar_fechas_programadas',
         data: {

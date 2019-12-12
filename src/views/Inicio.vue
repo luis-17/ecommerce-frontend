@@ -7,11 +7,10 @@
             img(src='@/assets/images/Icon_Facebook.svg')
           a(class='box-instagram' href='https://www.instagram.com/clinicaprovidenciaperu/')
             img(src='@/assets/images/Icon_Inst.svg')
-    div.angle-separator-content
-      div.angle-separator-bottom
+    //- div.angle-separator-content
+    //-   div.angle-separator-bottom
     .box-forms-content
       .box-forms
-        div.luna-corner
         .box-form-login(v-if='boolLogin')
           h1 Inicia sesión y reserva tu cita online en minutos.
           vue-recaptcha(
@@ -220,20 +219,20 @@ export default {
     background-repeat: no-repeat;
     background-size: cover;
     // background-color: #212529;
-    width: calc(100% - 30vh);
+    width: calc(100% - 230px);
   }
   .box-lateral-blue{
     background-color: #005794;
     float: right;
-    width: 30vh;
+    width: 230px;
     height: calc(100vh);
-    margin-right: -30vh;
+    margin-right: -230px;
     position: relative;
   }
   .box-lateral-blue .box-section-bottom{
-    bottom: 5vh;
     position: absolute;
     width: 100%;
+    bottom: 12vh;
   }
   .box-lateral-blue .box-section-bottom .box-redes{
     display: flex;
@@ -241,7 +240,7 @@ export default {
     justify-content: center;
     padding: 0 2rem
   }
-  .box-lateral-blue .box-section-bottom .box-redes > a{
+  .box-lateral-blue .box-section-bottom .box-redes > a.box-facebook{
     margin-right: 1rem;
   }
   .box-lateral-blue .box-section-bottom .box-libro-rec{
@@ -290,7 +289,7 @@ export default {
     width: 540px;
     position: absolute;
     top: 5.9rem;
-    right: calc(30vh - 0%);
+    right: 230px;
   }
   button.k-button.btn-block{
     width: 100%;

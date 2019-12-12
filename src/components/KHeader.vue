@@ -38,7 +38,7 @@ export default {
   box-shadow: -1px -4px 18px 0px rgba(70, 70, 70, 0.4);
   padding-left: 3rem;
   width: 100%;
-  // background-color: white;
+  background-color: white;
   position: fixed;
   right: 0;
   z-index: 2;

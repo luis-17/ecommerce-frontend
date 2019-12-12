@@ -26,7 +26,7 @@ module.exports = {
     config.plugins.push(new Webpack.DefinePlugin({
       'process.env.API_URL': '"http://104.131.176.122/api-citas-providencia/public/api"', // 54.174.88.163
       // 'process.env.API_URL': '"http://54.174.88.163/api/v1"',
-      'process.env.reCAPTCHA_SITE_KEY': '"6LdvhowUAAAAANO_QqjifLELhrAazeoNd2bL3iNt"',
+      'process.env.reCAPTCHA_SITE_KEY': '"6LeausYUAAAAAF3DtTtBjSVauezmZBDl4NLEEXNa"', // private: 6LeausYUAAAAAIT0Rrd6-VtEeyW18_VbIoJx0oS-
     }));
   },
 };
