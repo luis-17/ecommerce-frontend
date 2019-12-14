@@ -95,7 +95,7 @@
               .box-label MÉDICO:
               p {{ formDatosCita.medico }}
             .box-group
-              .box-label GARANTE: 
+              .box-label CONVENIO: 
               p {{ formDatosCita.garante }}
             .box-group
               .box-label FECHA/TURNO
@@ -398,7 +398,6 @@ export default {
         }finally{
           this.$wait.end('global');
         }
-        
       },
     }),
     // async openConfirmAnularCita(idcita) {
