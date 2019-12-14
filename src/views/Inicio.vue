@@ -326,10 +326,20 @@ export default {
     text-align: center;
     color: #829723;
   }
-  // Small devices (landscape phones, 576px and up)
-  @media (max-width: 576px) {
-    h1 {
-      font-size: 1.25rem;
-    }
+  
+  @media (max-width: 1199px){
+
+  }
+  @media (max-width: 992px){ /* 992 a 769*/
+
+  }
+  @media (max-width: 768px){ /* 768 a 577 */
+    
+  }
+  @media (max-width: 576px) { /*576 a 376*/
+
+  }
+  @media (max-width: 375px) {
+    
   }
 </style>

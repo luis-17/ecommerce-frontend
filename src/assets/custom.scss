@@ -184,64 +184,6 @@ a{
 .box-breadcrumb{
   margin: 3rem;
 }
-// .box-content{
-//   display: flex;
-//   align-items: center;
-//   justify-content: center;
-// }
-// .box-content .box-item{
-//   display: flex;
-//   flex-wrap: wrap;
-//   align-items: center;
-//   justify-content: center;
-//   width: 160px;
-//   text-align: center;
-//   line-height: 1;
-// }
-// .box-content .box-item.ok{
-//   color: #00cc6f;
-// }
-// .box-content .box-item.process{
-//   color: #ffa633;
-// }
-// .box-content .box-item.post{
-//   color: #afafaf;
-// }
-// .box-content .box-item .box-icon{
-//   width: 100%;
-//     text-align: center;
-// }
-// .box-content .box-item .box-title{
-//   font-weight: 500;
-//   font-size: 0.9rem;
-// }
-/*RESPONSIVE*/
-@media (max-width: 992px) {
-  .box-breadcrumb{
-    margin: 1rem;
-  }
-  .box-content-forms form, .box-content-forms .box-result{
-    margin: 2.5rem;
-  }
-}
-
-
-// Small devices (landscape phones, 576px and up)
-@media (max-width: 576px) {
-  .box-content{
-    // overflow-x: auto;
-    // justify-content: end;
-  }
-  .box-content .box-item{
-    min-width: 160px;
-  }
-  .box-breadcrumb{
-    margin: 1rem;
-  }
-  .box-content-forms form, .box-content-forms .box-result{
-    margin: 2rem 1rem;
-  }
-}
 
 // Medium devices (tablets, 768px and up)
 @media (min-width: 768px) {  }

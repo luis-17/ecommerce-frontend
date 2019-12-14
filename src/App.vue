@@ -172,31 +172,5 @@ export default {
     width: auto;
     height: 26px;
   }
-  .box-content-menu{
-    display: flex;
-    margin: 0;
-    font-size: 20px;
-    list-style: none;
-  }
-  .box-content-menu li{
-    padding: 12px 20px 12px 12px;
-  }
-  .box-menu{
-    display: flex;
-    flex: 2;
-    align-items: center;
-  }
-  .box-content-menu li a{
-    color: #003d71;
-    transition: all 0.25s;
-    text-decoration: none;
-    font-weight: normal;
-  }
-  .box-content-menu li a.active{
-    color: #829723;
-    font-weight: 600;
-  }
-  .box-content-menu li a:hover{
-    color: #829723;
-  }
+  
 </style>
