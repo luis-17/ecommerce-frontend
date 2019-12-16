@@ -5,22 +5,18 @@
         .mx-auto
           h2.box-letter.pb-3 {{ strTextTitle }}
       .body-modal
+        .box-fecha
+          h3 <i class="fas fa-calendar-alt"></i> {{selectedFecha}}
         .box-turnos
           .box-content-turnos
             .box-turno
               .box-eleccion
-                //- form(
-                //-   :key='componentKey'
-                //-   novalidate=''
-                //-   @submit.prevent='onDatosSubrogado'
-                //-   data-vv-scope='formDatosSubrogado')
                 label(v-for='(item, index) in arrHorario')
                   k-button-radio(
                     :label='item.hora_inicio'
                     name='hora_inicio'
                     :value='item.hora_inicio'
                     v-on:change="onChangeHorarios(item)")
-                  //- span.checkmark
       .k-button-layout.text-center
         k-button(@click='elegirTurno' type='button' class='btn-sm') ELEGIR
         k-button(@click='regresar' type='link' class='') REGRESAR
@@ -42,6 +38,10 @@ export default {
       type: String,
       default: null,
     },
+    selectedFecha: {
+      type: String,
+      default: null,
+    },
     arrHorario: {
       type: Array,
       required: true,
@@ -50,13 +50,16 @@ export default {
   data: () => ({
     strTextTitle: null,
     isModalTurno: false,
+    strSelectedFecha: null,
     selectedTurno: null,
   }),
   async created() {
     this.strTextTitle = this.textTitle;
+    this.strSelectedFecha = this.selectedFecha;
+    // console.log(this.selectedFecha, 'SELECYEDFECHA');
   },
   computed: {
-    
+    // console.log(this.selectedFecha);
   },
   watch: {
     show(newValue) {
@@ -113,6 +116,15 @@ export default {
     text-transform: uppercase;
     border-bottom: 1px solid #e0e0e0;
     padding-bottom: 1rem;
+  }
+  .box-fecha h3{
+    text-align: center;
+    color: #005794;
+    margin-top: 1rem;
+    margin-bottom: 0;
+    background-color: #ececec;
+    padding: 0.4rem;
+    border-radius: 5px;
   }
   .box-eleccion .rb-turno {
       width: auto;

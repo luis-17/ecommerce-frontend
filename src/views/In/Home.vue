@@ -145,6 +145,7 @@ export default {
   }
   .page-home .box-bienvenida .box-principal .box-principal-content{
       position: absolute;
+      left: 1.4rem;
   }
   .page-home .box-bienvenida .box-principal h3{
       font-size: 30px;

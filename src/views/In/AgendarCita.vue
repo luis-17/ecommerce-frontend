@@ -105,6 +105,7 @@
             k-button(type='button' @click='confirmarCita') CONFIRMAR CITA
       eleccion-turno(
         :show.sync='isModalTurno'
+        :selectedFecha='formDatosCita.fecha_cita'
         :textTitle='"Seleccione la hora deseada"'
         :arrHorario='arrHorario'
         @elegirCita='onElegirCita')
