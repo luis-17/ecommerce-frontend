@@ -14,7 +14,7 @@
         :size='50'
         :line-size='7'
         :message='$t("messages.uploading")')
-    k-header
+    k-header(:classDynamic='classDynamic')
       template(
         v-if='$can("logged", "USER")'
         v-slot:header='')
@@ -34,9 +34,36 @@
             .box-info
               .box-info-rol Bienvenido
               .box-info-nickname {{ user.nombres }}
+            .box-icon-menu
+              a.box-icon(href='javascript:void(0)' @click='verMenuResponsive')
+                img(src='@/assets/images/icons/menu-alt.png')
             .logout
               a.logout-text(href='javascript:void(0)' @click='cerrarSesion')
                 img(src='@/assets/images/icons/shutdown.png')
+      template(
+        v-if='$can("logged", "USER")'
+        v-slot:lateralMobile='')
+        .menu-content
+          .nav-heading.box-mp
+            h3.box-label-mp OPCIONES
+          .items
+            ul.nav.nav-sidebar.pb-n
+              li.item.home
+                a.menu-responsive(href='javascript:void(0)' @click='$router.push({ name: "Home" })') 
+                  <i class="fas fa-home"></i>
+                  span.nav-text INICIO
+              li.item.home
+                a.menu-responsive(href='javascript:void(0)' @click='$router.push({ name: "AgendarCita" })') 
+                  <i class="fas fa-calendar-alt"></i>
+                  span.nav-text AGENDAR CITA
+              li.item.home
+                a.menu-responsive(href='javascript:void(0)' @click='$router.push({ name: "HistorialCitas" })') 
+                  <i class="fas fa-book-medical"></i>
+                  span.nav-text HISTORIAL
+              li.item.home
+                a.menu-responsive(href='javascript:void(0)' @click='cerrarSesion') 
+                  <i class="fas fa-sign-out-alt"></i>
+                  span.nav-text CERRAR SESIÓN
       template(
         v-else=''
         v-slot:form='')
@@ -56,6 +83,7 @@ export default {
   mixins: [vueinterval],
   data: () => ({
     username: null,
+    classDynamic: ' semion',
   }),
   computed: {
     ...mapGetters({
@@ -91,6 +119,14 @@ export default {
       //     });
       //   });
       // }
+    },
+    verMenuResponsive() {
+      if(this.classDynamic.includes('semion')){
+        this.classDynamic = 'on';
+      }else{
+        this.classDynamic = 'semion';
+      }
+      
     },
   },
   watch: {
@@ -129,17 +165,8 @@ export default {
   @import '@/../node_modules/pikaday/scss/pikaday.scss';
   .navbar-brand{
     margin-left: 1rem;
-  }
-  .box-perfil{
-
-  }
-  .box-perfil-content{
     display: flex;
     align-items: center;
-    padding-right: 30px;
-  }
-  .header-nav{
-    display: flex;
   }
   .box-info{
     display: inline-block;
@@ -150,27 +177,12 @@ export default {
   .box-info .box-info-rol{
     font-weight: bold;
   }
-  .box-photo{
-    display: flex;
-    padding: 4px 20px;
+  .box-info .box-info-nickname{
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+    width: 100px;
   }
-  .box-photo a{
-    border: 3px solid #829723;
-    border-radius: 50%;
-  }
-  .box-photo img{
-    height: 40px;
-    border-radius: 50%;
-    width: 40px;
-  }
-  .box-perfil-content .logout{
-    display: inline-block;
-    border-left: 1px solid #e0e0e0;
-    padding: 8px 20px;
-  }
-  .box-perfil-content .logout img{
-    width: auto;
-    height: 26px;
-  }
+  
   
 </style>

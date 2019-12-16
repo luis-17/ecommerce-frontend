@@ -79,4 +79,12 @@ export default {
     padding: 0.5rem;
     border: unset;
   }
+  @media (max-width: 576px) { /*576 a 376*/
+    .k-button-layout .k-button + .k-button{
+      margin-top: 0 !important;
+    }
+    .box-letter{
+      font-size: 20px;
+    }
+  }
 </style>

@@ -65,7 +65,7 @@
       .box-acciones
         .box-btn
           k-button(type='button' @click='$router.push({ name: "HistorialCitas" })') HISTORIAL
-          k-button(class='btn-light ml-4' type='button' @click='$router.push({ name: "AgendarCita" })') AGENDAR CITA
+          k-button(class='btn-light' type='button' @click='$router.push({ name: "AgendarCita" })') AGENDAR CITA
 </template>
 
 <script>
@@ -311,12 +311,14 @@ export default {
   }
   .page-home .box-acciones .box-btn{
       text-align: center;
+      display: flex;
+      justify-content: space-evenly;
   }
   .page-home .box-acciones {
       margin-bottom: 5%;
   }
   /* Large devices (laptops/desktops, 992px and up) LG */
-  @media only screen and (max-width: 1200px) {
+  @media only screen and (max-width: 1199px) {
     .page-home .box-bienvenida .box-principal .box-principal-content{
       padding-left: 10px;
     }
@@ -333,7 +335,7 @@ export default {
       font-size: 26px;
     }
   }
-  @media only screen and (max-width: 960px) {
+  @media only screen and (max-width: 992px) {
     .page-home {
           padding-top: 40px;
           margin-right: 60px;
@@ -380,28 +382,97 @@ export default {
       min-width: unset;
       padding: 20px;
     }
+    .page-home .box-bienvenida .box-principal .box-principal-content{
+      left: 25px;
+    }
   }
-  @media only screen and (max-width: 600px) {
-      .page-home .box-acciones button{
-          margin-bottom: 10px;
-          width: 80%;
-      }
-      .page-home .box-bienvenida .box-principal h3{
-          font-size: 20px;
-      }
-      .page-home .box-bienvenida .box-principal .box-principal-content{
-          left: 0;
-          margin: 10px 20px;
-      }
-      .page-home .box-bienvenida .box-item {
-          font-size: 15px;
-          padding: 20px 25px;
-      }
-      .page-home .box-bienvenida .box-agendar-ahora .box-icono > img {
-          height: 56px;
-      }
-      .page-home .box-bienvenida .box-titulo > a{
-          padding-top: 18px;
-      }
+  @media only screen and (max-width: 768px) {
+    .page-home .box-acciones button{
+        margin-bottom: 10px;
+        // width: 80%;
+    }
+    .page-home .box-bienvenida .box-principal h3{
+        font-size: 20px;
+    }
+    .page-home .box-bienvenida .box-principal .box-principal-content{
+        left: 0;
+        margin: 10px 20px;
+    }
+    .page-home .box-bienvenida .box-item {
+        font-size: 15px;
+        padding: 20px 25px;
+    }
+    .page-home .box-bienvenida .box-agendar-ahora .box-icono > img {
+        height: 56px;
+    }
+    .page-home .box-bienvenida .box-titulo > a{
+        padding-top: 18px;
+    }
+  }
+
+  @media (max-width: 576px) {
+    .page-home{
+      padding-top: 0;
+    }
+    .page-home .box-acciones .box-btn{
+      display: block;
+    }
+    .page-home .box-acciones button{
+      width: 100%;
+    }
+    .page-home .box-perfil-paciente h2{
+      font-size: 18px;
+      font-weight: 500;
+    }
+    .page-home .box-perfil-paciente .box-perfil .box-item {
+      width: 120px;
+      padding: 16px 0;
+    }
+    .page-home .box-perfil-paciente .box-perfil .box-item-rpta .pre-valor{
+      overflow: hidden;
+      width: 80px;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+      text-align: left;
+    }
+    .page-home .box-perfil-paciente {
+      margin-bottom: 3rem;
+    }
+    .page-home .box-bienvenida .box-principal{
+      margin-top: 1rem;
+    }
+  }
+
+  @media (max-width: 420px) {
+    .page-home .box-bienvenida .box-principal .box-cuerpo{
+      font-size: 14px;
+    }
+    .page-home .box-bienvenida .box-principal{
+      height: 140px;
+      font-weight: 300;
+    }
+    .page-home .box-bienvenida .box-agendar-ahora .box-icono > img{
+      height: 40px;
+    }
+    .page-home .box-bienvenida .box-item{
+      font-size: 13px;
+      font-weight: 100;
+      padding: 10px 20px;
+    }
+    .page-home .box-bienvenida .box-titulo > a{
+      font-size: 15px;
+      padding-top: 5px;
+    }
+    .page-home .box-bienvenida .box-principal .box-principal-content{
+      padding: 0;
+    }
+    .page-home .box-bienvenida .box-historico .box-icono > img{
+      height: 36px;
+      padding-bottom: 0;
+      margin-bottom: 5px;
+    }
+    .page-home .box-perfil-paciente h2{
+      font-size: 16px;
+    }
   }
 </style>

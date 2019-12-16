@@ -50,4 +50,9 @@ export default {
         position: relative;
         top: 70px;
     }
+    @media (max-width: 576px) {
+        .k-root{
+            top: 64px;
+        }
+    }
 </style>

@@ -27,18 +27,18 @@ export default {
             h('div', {
               staticClass: 'card-header border-0 bg-white d-flex pt-3',
             }, [
-              // h('img', {
-              //   staticClass: 'ml-auto',
-              //   attrs: {
-              //     src: require('@/assets/images/icon_close.svg'),
-              //     width: '15rem',
-              //   },
-              //   on: {
-              //     click(event) {
-              //       self.$emit('close', event);
-              //     },
-              //   },
-              // }),
+              h('i', {
+                staticClass: 'fas fa-times',
+                // attrs: {
+                //   // src: require('@/assets/images/icon_close.svg'),
+                //   // width: '15rem',
+                // },
+                on: {
+                  click(event) {
+                    self.$emit('close', event);
+                  },
+                },
+              }),
             ]),
             h('div', {
               staticClass: 'card-body py-1 dummy-modal',
@@ -55,8 +55,12 @@ export default {
   color: #a6a6a6;
   font-weight: 200;
 }
-.card-header img{
-  width: 24px;
+.card-header i{
+  // width: 24px;
+  position: absolute;
+  right: 1rem;
+  font-size: 20px;
+  color: #a6a6a6;
 }
 // .item {
 //   background-color: #1973B8 !important;

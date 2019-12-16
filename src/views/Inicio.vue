@@ -9,8 +9,8 @@
             img(src='@/assets/images/Icon_Inst.svg')
     //- div.angle-separator-content
     //-   div.angle-separator-bottom
-    .box-forms-content
-      .box-forms
+    //- .box-forms-content
+    .box-forms
         .box-form-login(v-if='boolLogin')
           h1 Inicia sesión y reserva tu cita online en minutos.
           vue-recaptcha(
@@ -43,7 +43,8 @@
                   maxlength='255'
                   v-validate='{"required": true, "max": 255}'
                   :error='errors.first("formDatosLogin.password")'
-                  v-model.trim='formDatosLogin.password')
+                  v-model.trim='formDatosLogin.password'
+                  :all-uppercase='false')
               .col-12.col-md-12
                 .box-recaptcha
                   img(src='@/assets/images/recaptcha_16dp.png')
@@ -282,7 +283,7 @@ export default {
     right: 0;
     top: -5rem;
   }
-  .box-forms-content .box-forms{
+  .box-forms{
     background-color: white;
     border-radius: 2rem;
     padding: 2.25rem;
@@ -331,13 +332,46 @@ export default {
 
   }
   @media (max-width: 992px){ /* 992 a 769*/
-
+    .box-forms {
+      background-color: rgba(255,255,255,0.75);
+    }
+    .box-recaptcha span {
+      color: #4e4e4e;
+    }
   }
   @media (max-width: 768px){ /* 768 a 577 */
-    
+    .page-login{
+      width: 100%;
+    }
+    .box-lateral-blue{
+      display: none;
+    }
+    .box-forms{
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      align-items: center;
+      right: 0;
+      left: 0;
+      margin: auto;
+    }
   }
   @media (max-width: 576px) { /*576 a 376*/
-
+    .box-forms{
+      width: auto;
+      margin: 0 1rem;
+    }
+    h1{
+      font-size: 1.25rem;
+      margin-bottom: 1rem;
+      padding: 0;
+    }
+    .box-recaptcha{
+      // text-align: center;
+      text-align: center;
+      font-size: 12px;
+      line-height: 0.5;
+    }
   }
   @media (max-width: 375px) {
     

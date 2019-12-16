@@ -1,6 +1,6 @@
 <template lang="pug">
   .page.cita
-    .container
+    .container-fluid
       .row
         section.box-filtros(:class='paso1')
           form(
@@ -53,35 +53,36 @@
               //-   k-button(type='submit') PROCESAR
         section.box-calendario(:class='paso2')
           h4 <strong> PASO 2: </strong> Elija su turno
-          .box-content-calendario
-            .box-title-mes
-              p {{ arrCalendario.mes }}
-              .box-paginate
-                .icon.icon-prev(@click='onPrevPeriodo')
-                  img(src='@/assets/images/icons/left-arrow.png')
-                .icon.icon-next(@click='onNextPeriodo')
-                  img(src='@/assets/images/icons/right-arrow.png')
-            .box-title-semana
-              .item-semana.feriado Dom.
-              .item-semana Lun.
-              .item-semana Mar.
-              .item-semana Mie.
-              .item-semana Jue.
-              .item-semana Vie.
-              .item-semana Sab.
-            .box-dias
-              .box-row(v-for='(row, index) in arrCalendario.calendario')
-                .box-dia( @click='openDialogTurno(rowDet.fecha,rowDet.class, indexDet, index)' v-bind:class='[rowDet.class]' v-for='(rowDet, indexDet) in row') {{ rowDet.dia }}
-          .box-leyenda
-            .box-item-leyenda
-              .box-cuadro.active
-              .box-label DISPONIBLE
-            .box-item-leyenda
-              .box-cuadro.disabled
-              .box-label NO DISPONIBLE
-            .box-item-leyenda
-              .box-cuadro.selected
-              .box-label SELECCIONADO
+          .box-wrapper-calendario
+            .box-content-calendario
+              .box-title-mes
+                p {{ arrCalendario.mes }}
+                .box-paginate
+                  .icon.icon-prev(@click='onPrevPeriodo')
+                    img(src='@/assets/images/icons/left-arrow.png')
+                  .icon.icon-next(@click='onNextPeriodo')
+                    img(src='@/assets/images/icons/right-arrow.png')
+              .box-title-semana
+                .item-semana.feriado Dom.
+                .item-semana Lun.
+                .item-semana Mar.
+                .item-semana Mie.
+                .item-semana Jue.
+                .item-semana Vie.
+                .item-semana Sab.
+              .box-dias
+                .box-row(v-for='(row, index) in arrCalendario.calendario')
+                  .box-dia( @click='openDialogTurno(rowDet.fecha,rowDet.class, indexDet, index)' v-bind:class='[rowDet.class]' v-for='(rowDet, indexDet) in row') {{ rowDet.dia }}
+            .box-leyenda
+              .box-item-leyenda
+                .box-cuadro.active
+                .box-label DISPONIBLE
+              .box-item-leyenda
+                .box-cuadro.disabled
+                .box-label NO DISPONIBLE
+              .box-item-leyenda
+                .box-cuadro.selected
+                .box-label SELECCIONADO
         section.box-confirmacion(:class='paso3')
           h4 <strong> PASO 3: </strong> Confirmación
           .box-resumen
@@ -502,6 +503,7 @@ export default {
   /* Cita page */
   .page.cita{
     padding-top: 4rem;
+    margin: 0 0.75rem;
   }
   .page.cita .row{
       justify-content: center;
@@ -546,7 +548,10 @@ export default {
       border-radius: 20px 0 20px 0;
   }
   .page.cita .box-calendario .box-content-calendario{
-      margin-bottom: 15px;
+    min-width: 310px;
+  }
+  .page.cita .box-calendario .box-wrapper-calendario{
+      overflow: auto;
   }
   .page.cita .box-calendario h4{
       font-weight: 400;
@@ -722,38 +727,93 @@ export default {
       line-height: 1.15;
   }
   .page.cita .box-confirmacion button{
-      width: 100%;
+    width: 100%;
+    min-width: 100%;
   }
   .page.cita .box-confirmacion .box-action{
       padding-top: 10px;
   }
-  @media only screen and (max-width: 960px){
+  @media (max-width: 1199px){
+    .page.cita .box-filtros{
+      width: 22%;
+    }
+    .page.cita .box-confirmacion{
+      min-width: 22%;
+    }
+    .page.cita .box-confirmacion .box-group p{
+      max-width: 200px;
+    }
+  }
+  @media only screen and (max-width: 992px){
     .page.cita {
       padding-top: 40px;
-      margin-right: 60px;
-      }
-      .page.cita section.section-active{
-          width: 80%;
-          margin-bottom: 20px;
-      }
-      .page.cita section.section-inactive{
-          width: 80%;
-          margin-bottom: 20px;
-      }
-      .page.cita section.section-inactive{
-          width: 80%;
-          margin-bottom: 20px;
-      }
+      margin-right: 65px;
+    }
+    .page.cita section.section-active{
+        width: 80%;
+        margin-bottom: 20px;
+    }
+    .page.cita section.section-inactive{
+        width: 80%;
+        margin-bottom: 20px;
+    }
+    .page.cita section.section-inactive{
+        width: 80%;
+        margin-bottom: 20px;
+    }
+    .page.cita section.section-active{
+        width: 94%;
+    }
+    .page.cita section.section-inactive{
+        width: 94%;
+    }
+    .page.cita section.section-inactive{
+        width: 94%;
+    }
   }
-  @media only screen and (max-width: 960px){
-      .page.cita section.section-active{
-          width: 94%;
-      }
-      .page.cita section.section-inactive{
-          width: 94%;
-      }
-      .page.cita section.section-inactive{
-          width: 94%;
-      }
+  @media (max-width: 768px){ /* 768 a 577 */
+    .page.cita{
+      margin-left: 0;
+    }
+    .page.cita section.box-calendario{
+      margin: 0;
+    }
+    .page.cita .box-confirmacion{
+      margin-top: 1rem;
+    }
+  }
+  @media (max-width: 576px) { /*576 a 376*/
+    // .page.cita .box-leyenda{
+    //   display: block;
+    // }
+    .page.cita .box-leyenda .box-item-leyenda{
+      display: block;
+    }
+    .page.cita .box-leyenda .box-cuadro{
+      margin: auto;
+    }
+    .page.cita .box-item-leyenda .box-label{
+      font-size: 12px;
+    }
+    .page.cita .box-filtros{
+      width: 100%;
+      margin: 0 0.5rem;
+    }
+    .page.cita .box-calendario{
+      width: 100%;
+      margin-left: 0.5rem;
+      margin-right: 0.5rem;
+    }
+    .page.cita .box-confirmacion{
+      width: 100%;
+      margin-left: 0.5rem;
+      margin-right: 0.5rem;
+    }
+    // .page.cita section.section-active{
+    //   width: 100%;
+    // }
+  }
+  @media (max-width: 375px) {
+    
   }
 </style>

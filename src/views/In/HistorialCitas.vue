@@ -283,4 +283,103 @@ export default {
       position: absolute;
       bottom: 0;
   }
+  @media (max-width: 1199px){
+
+  }
+  @media (max-width: 992px){ /* 992 a 769*/
+
+  }
+  @media (max-width: 768px){ /* 768 a 577 */
+    .page-historial .box-tabs .box-tab-group{
+      width: 100%;
+      font-size: 18px;
+    }
+    .page-historial .box-content-tabs{
+      width: 100%;
+    }
+    .box-historial{
+      margin-right: 4rem;
+    }
+    .page-historial .box-content-items .box-item .box-detail{
+      font-size: 16px;
+    }
+    .page-historial .box-content-items .box-item .box-fecha{
+      width: 86px;
+    }
+    .page-historial .box-content-items .box-item{
+      justify-content: space-between;
+    }
+    .page-historial .box-content-items .box-item .box-fecha .box-content-fecha{
+      margin: 0;
+    }
+    .page-historial .box-end{
+      left: 38%;
+    }
+  }
+  @media (max-width: 576px) { /*576 a 376*/
+    .page-historial{
+      padding-top: 1rem;
+    }
+    .page-historial .box-tabs .box-tab-group{
+      font-size: 15px;
+    }
+    .page-historial .box-content-items .box-item .box-detail{
+      font-size: 15px;
+      margin-left: 0.8rem;
+      flex: 1;
+    }
+    .page-historial .box-content-items .box-item .box-detail .box-detail-item{
+      font-size: 13px;
+    }
+    .page-historial .box-content-items .box-item .box-fecha{
+      width: 60px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .page-historial .box-content-items .box-item .box-fecha .box-content-fecha{
+      height: 60px;
+    }
+    // .page-historial .box-content-items .timeline{
+    //   display: none;
+    // }
+    .page-historial .box-end{
+      left: 0;
+      right: 0;
+      display: flex;
+      align-items: center;
+      margin: auto;
+    }
+    .page-historial .box-content-items .box-item .box-fecha .box-content-fecha .mes{
+      font-size: 12px;
+    }
+    .page-historial .box-content-items .box-item .box-fecha .box-content-fecha .dia{
+      font-size: 26px;
+    }
+    .page-historial .box-content-items .box-item .box-detail{
+      padding-top: 1rem;
+      padding-bottom: 1rem;
+    }
+    .page-historial .box-content-items .box-item .box-detail .box-detail-item .icon img{
+      height: 20px;
+    }
+    .page-historial .box-content-items .box-item .box-detail .box-nombre{
+      padding-bottom: 0.4rem;
+    }
+    .page-historial .box-content-items .box-item .box-detail .box-detail-item{
+      margin: 0;
+      line-height: 1.25;
+    }
+  }
+  @media (max-width: 375px) {
+    .page-historial .box-tabs .box-tab-group{
+      font-size: 12px;
+    }
+    .page-historial .box-content-items .box-item .box-detail{
+      font-size: 13px;
+    }
+    .page-historial .box-content-items .box-item .box-detail .box-detail-item{
+      font-size: 12px;
+    }
+  }
 </style>

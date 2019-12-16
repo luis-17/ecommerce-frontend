@@ -35,7 +35,7 @@
                 @submit.prevent='onDatosPerfilPaciente'
                 data-vv-scope='formDatosPerfilPaciente')
                 .row
-                  .col-12.col-sm-6
+                  .col-lg-6.col-md-6.col-sm-12
                     k-input(
                       :label='"Nombres"'
                       :placeholder='"Nombres"'
@@ -46,7 +46,7 @@
                       :error='errors.first("formDatosPerfilPaciente.nombres")'
                       v-model.trim='formDatosPerfilPaciente.nombres'
                       :readonly='true')
-                  .col-12.col-sm-6
+                  .col-lg-6.col-md-6.col-sm-12
                     k-input(
                       :label='"Apellido Paterno"'
                       :placeholder='"Apellido Paterno"'
@@ -57,7 +57,7 @@
                       :error='errors.first("formDatosPerfilPaciente.apellido_paterno")'
                       v-model.trim='formDatosPerfilPaciente.apellido_paterno'
                       :readonly='true')
-                  .col-12.col-sm-6
+                  .col-lg-6.col-md-6.col-sm-12
                     k-input(
                       :label='"Apellido Materno"'
                       :placeholder='"Apellido Materno"'
@@ -68,7 +68,7 @@
                       :error='errors.first("formDatosPerfilPaciente.apellido_materno")'
                       v-model.trim='formDatosPerfilPaciente.apellido_materno'
                       :readonly='true')
-                  .col-12.col-sm-6
+                  .col-lg-6.col-md-6.col-sm-12
                     k-input(
                       :label='"Correo Electrónico"'
                       :placeholder='"Correo Electrónico"'
@@ -78,7 +78,7 @@
                       v-validate='"required|email"'
                       :error='errors.first("formDatosPerfilPaciente.correo")'
                       v-model.trim='formDatosPerfilPaciente.correo')
-                  .col-12.col-sm-6
+                  .col-lg-6.col-md-6.col-sm-12
                     k-input(
                       v-mask='"#########"'
                       :label='"Celular"'
@@ -89,8 +89,8 @@
                       v-validate='"required|numeric|min:9|max:9"'
                       :error='errors.first("formDatosPerfilPaciente.telefono")'
                       v-model.trim='formDatosPerfilPaciente.telefono')
-                  h4.col-12.mt-3.mb-0 Datos Adicionales
-                  .col-12.col-sm-6
+                  h4.col-lg-126.col-md-6.mt-3.m12-0 Datos Adicionales
+                  .col-lg-6.col-md-6.col-sm-12
                     k-select(
                       :label='"Tipo de Documento"'
                       :placeholder='"Tipo de Documento"'
@@ -101,7 +101,7 @@
                       v-model='formDatosPerfilPaciente.tipo_documento'
                       :options='tiposDocumentos'
                       :readonly='comboReadOnly')
-                  .col-12.col-sm-6
+                  .col-lg-6.col-md-6.col-sm-12
                     k-input(
                       mask='########'
                       :label='"Número de Documento"'
@@ -113,7 +113,7 @@
                       :error='errors.first("formDatosPerfilPaciente.numero_documento")'
                       v-model.trim='formDatosPerfilPaciente.numero_documento'
                       :readonly='true')
-                  .col-12.col-sm-6
+                  .col-lg-6.col-md-6.col-sm-12
                     k-select(
                       :label='"Sexo"'
                       :placeholder='"Sexo"'
@@ -124,7 +124,7 @@
                       v-model='formDatosPerfilPaciente.sexo'
                       :options='sexos'
                       :readonly='comboReadOnly')
-                  .col-12.col-sm-6
+                  .col-lg-6.col-md-6.col-sm-12
                     k-input(
                       type='date'
                       :label='"Fecha de Nacimiento"'
@@ -182,7 +182,7 @@
                 @submit.prevent='onDatosPerfilClinico'
                 data-vv-scope='formDatosPerfilClinico')
                 .row
-                  .col-12.col-sm-6
+                  .col-lg-6.col-md-6.col-sm-12
                     k-input(
                       :label='"Peso (en kg.)"'
                       :placeholder='"Peso"'
@@ -192,7 +192,7 @@
                       v-validate='"required|min:1|max:3|numeric"'
                       :error='errors.first("formDatosPerfilClinico.peso")'
                       v-model.trim='formDatosPerfilClinico.peso')
-                  .col-12.col-sm-6
+                  .col-lg-6.col-md-6.col-sm-12
                     k-input(
                       :label='"Estatura (en cm.)"'
                       :placeholder='"Estatura"'
@@ -202,7 +202,7 @@
                       v-validate='"required|max:3|numeric"'
                       :error='errors.first("formDatosPerfilClinico.estatura")'
                       v-model.trim='formDatosPerfilClinico.estatura')
-                  .col-12.col-sm-6
+                  .col-lg-6.col-md-6.col-sm-12
                     k-input(
                       :label='"Tipo de Sangre"'
                       :placeholder='"Tipo de Sangre"'
@@ -212,7 +212,7 @@
                       v-validate='"required|max:3"'
                       :error='errors.first("formDatosPerfilClinico.tipo_sangre")'
                       v-model.trim='formDatosPerfilClinico.tipo_sangre')
-                  .col-12.col-sm-6
+                  .col-lg-6.col-md-6.col-sm-12
                     k-input(
                       :label='"Edad"'
                       :placeholder='"Edad"'
@@ -222,7 +222,7 @@
                       :error='errors.first("formDatosPerfilClinico.edad")'
                       v-model.trim='formDatosPerfilClinico.edad'
                       :readonly='true')
-                  .col-12.col-sm-6
+                  .col-lg-6.col-md-6.col-sm-12
                     k-select(
                       :label='"Sexo"'
                       :placeholder='"Sexo"'
@@ -239,23 +239,24 @@
               h3 Gestionar familiares
             .box-list
               k-button(type='button' @click='$router.push({ name: "RegistrarFamiliar", params: {edit: false} })') AGREGAR FAMILIAR
-              table.table.table-condensed.table-hover
-                thead
-                  tr
-                    th N° DOC.
-                    th FAMILIAR
-                    th PARENTESCO
-                    th FECHA NAC.
-                    th ACCIÓN
-                tbody(v-for='(row, index) in arrFamiliares')
-                  tr
-                    td {{ row.numero_documento }}
-                    td {{ row.nombre_completo }}
-                    td {{ row.descripcion_par }}
-                    td {{ row.fecha_nacimiento }}
-                    td.action
-                      a.btn(href='javascript:void(0);' @click='$router.push({ name: "RegistrarFamiliar", params: {edit: row} })') Editar
-                      a.btn.btn-danger(href='javascript:void(0);' @click='openConfirmQuitarFamiliar(row.idcliente)') Quitar
+              .table-responsive
+                table.table.table-condensed.table-hover
+                  thead
+                    tr
+                      th N° DOC.
+                      th FAMILIAR
+                      th PARENTESCO
+                      th FECHA NAC.
+                      th ACCIÓN
+                  tbody(v-for='(row, index) in arrFamiliares')
+                    tr
+                      td {{ row.numero_documento }}
+                      td {{ row.nombre_completo }}
+                      td {{ row.descripcion_par }}
+                      td {{ row.fecha_nacimiento }}
+                      td.action
+                        a.btn(href='javascript:void(0);' @click='$router.push({ name: "RegistrarFamiliar", params: {edit: row} })') Editar
+                        a.btn.btn-danger(href='javascript:void(0);' @click='openConfirmQuitarFamiliar(row.idcliente)') Quitar
         confirm(
           :show.sync='showConfirm'
           :textTitle='"¿Está seguro de quitar al familiar?"'
@@ -531,6 +532,8 @@ export default {
     padding-top: 3%;
     padding-left: 4%;
     flex: 0.95;
+    width: 100%;
+    min-width: 280px;
 }
 .page-perfil .box-content .tab.show{
     display: block;
@@ -555,13 +558,16 @@ export default {
     display: flex;
     align-items: center;
     justify-content: space-evenly;
-    padding: 3%;
+    // padding: 3%;
     border: 1px solid #829723;
     margin-bottom: 5%;
     border-radius: 15px;
     text-align: center;
     position: relative;
     width: 100%;
+    flex-wrap: wrap;
+    padding: 1.5rem;
+    // padding-bottom: 0;
 }
 .page-perfil .box-perfil-content .box-perfil p{
     // margin-bottom: 5px;
@@ -574,13 +580,17 @@ export default {
 .page-perfil .box-perfil-content .box-perfil .box-item{
     display: flex;
     min-width: 150px;
+    // margin-bottom: 1.45rem;
+    width: 180px;
+    min-width: unset;
+    padding: 20px;
 }
 
 .page-perfil .box-perfil-content .box-perfil .box-item .box-item-rpta{
     display: flex;
     align-items: flex-end;
     position: relative;
-    width: 100%;
+    // width: 100%;
     color: #00c9d2;
 }
 .page-perfil .box-perfil-content .box-perfil img{
@@ -599,6 +609,8 @@ export default {
     padding-left: 4px;
     font-size: 12px;
     color: #003d71;
+    width: 100px;
+    text-align: left;
 }
 .page-perfil .box-perfil-content .box-perfil .box-item-rpta .post-valor{
     font-weight: 200;
@@ -633,5 +645,89 @@ export default {
     display: flex;
     align-items: center;
     justify-content: center;
+}
+@media (max-width: 1199px){
+
+}
+@media (max-width: 992px){ /* 992 a 769*/
+  .page-perfil{
+    margin-right: 65px;
+  }
+  .page-perfil .box-sidebar{
+    width: 220px;
+    padding-top: 32px;
+  }
+  .page-perfil .box-foto .link-foto > img{
+    height: 80px;
+    width: 80px;
+  }
+  .page-perfil .box-info h3{
+    width: 100%;
+    font-size: 20px;
+  }
+  .page-perfil .box-content-menu .box-item a{
+    font-size: 15px;
+    height: 40px;
+  }
+}
+@media (max-width: 768px){ /* 768 a 577 */
+  .page-perfil .box-perfil-content .box-perfil{
+    justify-content: center;
+    padding: 4px 12px;
+  }
+  .page-perfil .box-perfil-content .box-perfil .box-item{
+    width: 50%;
+    padding: 12px 0;
+    justify-content: center;
+  }
+  .page-perfil .box-perfil-content .box-perfil img{
+    height: 40px;
+  }
+  .page-perfil .box-perfil-content .box-perfil .box-item-rpta .valor{
+    font-size: 22px;
+  }
+  .page-perfil .box-perfil-content .box-perfil .box-item-rpta .pre-valor{
+    // width: 80px;
+    // overflow: hidden;
+    // text-overflow: ellipsis;
+    // white-space: nowrap;
+  }
+  .page-perfil .box-perfil-content .box-perfil .box-item .box-item-rpta{
+    flex: 1;
+  }
+  .page-perfil .box-content .box-list button{
+    width: 100%;
+    min-width: 100%;
+  }
+  .page-perfil .box-list table{
+    font-size: 12px;
+  }
+  .page-perfil .box-content{
+    padding: 1rem;
+    padding-right: 0;
+  }
+}
+@media (max-width: 576px) { /*576 a 376*/
+  .page-perfil .box-sidebar{
+    width: 100%;
+    height: auto;
+    padding-bottom: 2.45rem;
+  }
+  .page-perfil .box-content .box-header h3{
+    text-align: center;
+    margin-bottom: 1rem;
+    font-size: 20px;
+  }
+  .page-perfil .box-content{
+    margin-bottom: 1.5rem;
+  }
+}
+@media (max-width: 375px) {
+  .page-perfil .box-perfil-content .box-perfil .box-item-rpta .pre-valor{
+    font-size: 10px;
+  }
+  .page-perfil .box-perfil-content .box-perfil img[data-v-052a255d] {
+    height: 36px;
+  }
 }
 </style>
