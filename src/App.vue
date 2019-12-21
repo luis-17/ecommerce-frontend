@@ -35,11 +35,13 @@
               .box-info-rol Bienvenido
               .box-info-nickname {{ user.nombres }}
             .box-icon-menu
-              a.box-icon(href='javascript:void(0)' @click='verMenuResponsive')
-                img(src='@/assets/images/icons/menu-alt.png')
+              a.box-icon.box-bars(:class='{"visible": isShowIcon === "bars"}' href='javascript:void(0)' @click='verMenuResponsive')
+                i.fas.fa-bars
+              a.box-icon.box-times(:class='{"visible": isShowIcon === "times"}' href='javascript:void(0)' @click='verMenuResponsive' )
+                i.fas.fa-times
             .logout
               a.logout-text(href='javascript:void(0)' @click='cerrarSesion')
-                img(src='@/assets/images/icons/shutdown.png')
+                i.fas.fa-sign-out-alt
       template(
         v-if='$can("logged", "USER")'
         v-slot:lateralMobile='')
@@ -84,6 +86,7 @@ export default {
   data: () => ({
     username: null,
     classDynamic: ' semion',
+    isShowIcon: 'bars',
   }),
   computed: {
     ...mapGetters({
@@ -123,10 +126,11 @@ export default {
     verMenuResponsive() {
       if(this.classDynamic.includes('semion')){
         this.classDynamic = 'on';
+        this.isShowIcon = 'times';
       }else{
         this.classDynamic = 'semion';
+        this.isShowIcon = 'bars';
       }
-      
     },
   },
   watch: {

@@ -708,6 +708,9 @@ export default {
   }
 }
 @media (max-width: 576px) { /*576 a 376*/
+  .page-perfil{
+    margin-right: 0;
+  }
   .page-perfil .box-sidebar{
     width: 100%;
     height: auto;

@@ -133,7 +133,7 @@ export default {
   }
   .page-home .box-bienvenida .box-principal{
       flex: 2.5;
-      // background-image: url('/assets/img/home.jpg');
+      background-image: url('/assets/img/home.jpg');
       background-image: url('/home.jpg');
       background-repeat: no-repeat;
       background-size: cover;
@@ -180,7 +180,7 @@ export default {
       padding: 20px 40px;
       font-size: 15px;
       font-weight: 300;
-      line-height: 1.15;
+      line-height: 1.25;
       cursor: pointer;
       cursor: hand;
       -webkit-transition: all 0.25s;
@@ -414,7 +414,51 @@ export default {
   @media (max-width: 576px) {
     .page-home{
       padding-top: 0;
+      margin-right: 0;
     }
+    .page-home .box-bienvenida .box-principal{
+      color: #959595;
+      flex: unset;
+      background-image: unset;
+      position: relative;
+      display: unset;
+      align-items: unset;
+      justify-content: unset;
+      border-radius: unset;
+      height: 100px;
+      font-weight: 300;
+      margin-top: 1.5rem;
+      min-height: 84px;
+      height: unset;
+    }
+    .page-home .box-bienvenida .box-principal .box-cuerpo{
+      width: 100%;
+      font-size: 15px;
+    }
+    .page-home .box-bienvenida .box-principal .box-principal-content{
+      margin: 0;
+      width: 100%;
+      text-align: center;
+      padding: 0;
+    }
+    .page-home .box-bienvenida .box-principal-content .box-titulo{
+      display: block;
+    }
+    .page-home .box-bienvenida .box-item .box-titulo{
+      // display: block;
+    }
+    .page-home .box-bienvenida .box-principal::before{
+      content: unset;
+      // display: block;
+      // width: 100%;
+      // height: 100%;
+      background: unset;
+      position: unset;
+      // top: 0;
+      // left: 0;
+      opacity: 1;
+      border-radius: unset;
+  }
     .page-home .box-acciones .box-btn{
       display: block;
     }
@@ -439,30 +483,33 @@ export default {
     .page-home .box-perfil-paciente {
       margin-bottom: 3rem;
     }
-    .page-home .box-bienvenida .box-principal{
-      margin-top: 1rem;
+    .box-mini-icono{
+      display: none;
+    }
+    .page-home .box-bienvenida .box-item{
+      min-height: 120px;
     }
   }
 
   @media (max-width: 420px) {
-    .page-home .box-bienvenida .box-principal .box-cuerpo{
-      font-size: 14px;
-    }
-    .page-home .box-bienvenida .box-principal{
-      height: 140px;
-      font-weight: 300;
-    }
+    // .page-home .box-bienvenida .box-principal .box-cuerpo{
+    //   font-size: 14px;
+    // }
+    // .page-home .box-bienvenida .box-principal{
+    //   height: 140px;
+    //   font-weight: 300;
+    // }
     .page-home .box-bienvenida .box-agendar-ahora .box-icono > img{
       height: 40px;
     }
     .page-home .box-bienvenida .box-item{
-      font-size: 13px;
+      // font-size: 13px;
       font-weight: 100;
       padding: 10px 20px;
     }
-    .page-home .box-bienvenida .box-titulo > a{
+    .page-home .box-bienvenida .box-item .box-titulo > a{
       font-size: 15px;
-      padding-top: 5px;
+      // padding-top: 5px;
     }
     .page-home .box-bienvenida .box-principal .box-principal-content{
       padding: 0;
@@ -470,7 +517,7 @@ export default {
     .page-home .box-bienvenida .box-historico .box-icono > img{
       height: 36px;
       padding-bottom: 0;
-      margin-bottom: 5px;
+      // margin-bottom: 5px;
     }
     .page-home .box-perfil-paciente h2{
       font-size: 16px;

@@ -7,77 +7,72 @@
             img(src='@/assets/images/Icon_Facebook.svg')
           a(class='box-instagram' href='https://www.instagram.com/clinicaprovidenciaperu/')
             img(src='@/assets/images/Icon_Inst.svg')
-    //- div.angle-separator-content
-    //-   div.angle-separator-bottom
-    //- .box-forms-content
     .box-forms
-        .box-form-login(v-if='boolLogin')
-          h1 Inicia sesión y reserva tu cita online en minutos.
-          vue-recaptcha(
-            ref='invisibleRecaptcha'
-            @verify='onVerify'
-            @expired='onExpired'
-            size='invisible'
-            :sitekey='sitekey'
-            badge='bottomright')
-          form( novalidate='' @submit.prevent='onDatosLogin' data-vv-scope='formDatosLogin')
-            .row
-              .col-lg-12.col-md-12.col-sm-12.col-xs-12
-                k-input(
-                  mask='########'
-                  :label='"Número de Documento"'
-                  :placeholder='"Número de Documento"'
-                  :data-vv-as='"Número de Documento"'
-                  name='username'
-                  maxlength='8'
-                  v-validate='{ required: true, min: 8, max: 8 }'
-                  :error='errors.first("formDatosLogin.username")'
-                  v-model.trim='formDatosLogin.username')
-              .col-lg-12.col-md-12.col-sm-12.col-xs-12
-                k-input(
-                  type='password'
-                  :label='"Clave"'
-                  :placeholder='"Clave"'
-                  :data-vv-as='"Clave"'
-                  name='password'
-                  maxlength='255'
-                  v-validate='{"required": true, "max": 255}'
-                  :error='errors.first("formDatosLogin.password")'
-                  v-model.trim='formDatosLogin.password'
-                  :all-uppercase='false')
-              .col-12.col-md-12
-                .box-recaptcha
-                  img(src='@/assets/images/recaptcha_16dp.png')
-                  span Protección de reCAPTCHA. Privacidad-Condiciones
-              k-button-layout.col-lg-12
-                k-button(type='submit' class='btn-block') Iniciar sesión
-        .box-form-others
-          .box-form-options(v-if='boolActionsBtn')
-            .box-olvido-clave.text-center
-              k-button(type='link' @click='olvideClave' class='mt-2') Olvidé mi clave
-            .box-registrate-ahora.text-center
-              k-button(type='link' @click='$router.push({ name: "RegistrarCuenta" })') ¿No tienes cuenta? ¡Regístrate ahora!
-          .box-form-content
-            .box-olvido-clave-content(v-if='boolOlvidoClave')
-              h2 Recuperación de Cuenta
-              form( novalidate='' @submit.prevent='onDatosOlvidoClave' data-vv-scope='formDatosOlvidoClave')
-                .row
-                  .col-lg-12.col-md-12.col-sm-12.col-xs-12
-                    k-input(
-                      mask='########'
-                      :label='"Número de Documento"'
-                      :placeholder='"Número de Documento"'
-                      :data-vv-as='"Número de Documento"'
-                      name='numeroDocumento'
-                      maxlength='8'
-                      v-validate='{ required: true, min: 8, max: 8 }'
-                      :error='errors.first("formDatosOlvidoClave.numeroDocumento")'
-                      v-model.trim='formDatosOlvidoClave.numeroDocumento')
-                  k-button-layout.col-lg-12.mt-3
-                    k-button(type='submit') Recuperar Cuenta
-                    k-button(type='link' @click='volverAlInicio') Volver
-              
-    
+      .box-form-login(v-if='boolLogin')
+        h1 Inicia sesión y reserva tu cita online en minutos.
+        vue-recaptcha(
+          ref='invisibleRecaptcha'
+          @verify='onVerify'
+          @expired='onExpired'
+          size='invisible'
+          :sitekey='sitekey'
+          badge='bottomright')
+        form( novalidate='' @submit.prevent='onDatosLogin' data-vv-scope='formDatosLogin')
+          .row
+            .col-lg-12.col-md-12.col-sm-12.col-xs-12
+              k-input(
+                mask='########'
+                :label='"Número de Documento"'
+                :placeholder='"Número de Documento"'
+                :data-vv-as='"Número de Documento"'
+                name='username'
+                maxlength='8'
+                v-validate='{ required: true, min: 8, max: 8 }'
+                :error='errors.first("formDatosLogin.username")'
+                v-model.trim='formDatosLogin.username')
+            .col-lg-12.col-md-12.col-sm-12.col-xs-12
+              k-input(
+                type='password'
+                :label='"Clave"'
+                :placeholder='"Clave"'
+                :data-vv-as='"Clave"'
+                name='password'
+                maxlength='255'
+                v-validate='{"required": true, "max": 255}'
+                :error='errors.first("formDatosLogin.password")'
+                v-model.trim='formDatosLogin.password'
+                :all-uppercase='false')
+            .col-12.col-md-12
+              .box-recaptcha
+                img(src='@/assets/images/recaptcha_16dp.png')
+                span Protección de reCAPTCHA. Privacidad-Condiciones
+            k-button-layout.col-lg-12
+              k-button(type='submit' class='btn-block') Iniciar sesión
+      .box-form-others
+        .box-form-options(v-if='boolActionsBtn')
+          .box-olvido-clave.text-center
+            k-button(type='link' @click='olvideClave' class='mt-2') Olvidé mi clave
+          .box-registrate-ahora.text-center
+            k-button(type='link' @click='$router.push({ name: "RegistrarCuenta" })') ¿No tienes cuenta? ¡Regístrate ahora!
+        .box-form-content
+          .box-olvido-clave-content(v-if='boolOlvidoClave')
+            h2 Recuperación de Cuenta
+            form( novalidate='' @submit.prevent='onDatosOlvidoClave' data-vv-scope='formDatosOlvidoClave')
+              .row
+                .col-lg-12.col-md-12.col-sm-12.col-xs-12
+                  k-input(
+                    mask='########'
+                    :label='"Número de Documento"'
+                    :placeholder='"Número de Documento"'
+                    :data-vv-as='"Número de Documento"'
+                    name='numeroDocumento'
+                    maxlength='8'
+                    v-validate='{ required: true, min: 8, max: 8 }'
+                    :error='errors.first("formDatosOlvidoClave.numeroDocumento")'
+                    v-model.trim='formDatosOlvidoClave.numeroDocumento')
+                k-button-layout.col-lg-12.mt-3
+                  k-button(type='submit') Recuperar Cuenta
+                  k-button(type='link' @click='volverAlInicio') Volver
 </template>
 <script>
 import Vue from 'vue';
@@ -360,6 +355,10 @@ export default {
     .box-forms{
       width: auto;
       margin: 0 1rem;
+    }
+    .box-form-login{
+      color: #00386c;
+      font-size: 16px;
     }
     h1{
       font-size: 1.25rem;

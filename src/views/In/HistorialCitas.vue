@@ -320,6 +320,9 @@ export default {
     .page-historial{
       padding-top: 1rem;
     }
+    .box-historial{
+      margin-right: 0;
+    }
     .page-historial .box-tabs .box-tab-group{
       font-size: 15px;
     }

@@ -310,14 +310,15 @@ export default {
         }
       },
       async onConfirm() {
-        this.formDatosCita.fecha_cita = moment(this.formDatosCita.fecha_cita,'DD-MM-YYYY').format('YYYY-MM-DD');
+        // this.formDatosCita.fecha_cita = moment(this.formDatosCita.fecha_cita,'DD-MM-YYYY').format('YYYY-MM-DD');
         const { flag } = await this.GenericService.store({
           uri: 'platform/registrar_cita',
           data: {
             ...this.formDatosCita,
+            fecha_cita: moment(this.formDatosCita.fecha_cita,'DD-MM-YYYY').format('YYYY-MM-DD'),
           },
         });
-        // console.log(flag, 'flagflagflag');
+        console.log(this.formDatosCita, 'this.formDatosCita');
         if(flag === 1){
           this.$swal({ type: 'success', text: 'Se registró la cita correctamente', timer: 3000 }).then(() => {
             this.$router.push({ name: 'HistorialCitas' });
@@ -787,6 +788,13 @@ export default {
     // .page.cita .box-leyenda{
     //   display: block;
     // }
+    .page.cita {
+      margin-left: 0;
+      margin-right: 0;
+    }
+    .page.cita .box-leyenda{
+      margin-top: 1rem;
+    }
     .page.cita .box-leyenda .box-item-leyenda{
       display: block;
     }

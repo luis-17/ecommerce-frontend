@@ -1,7 +1,7 @@
 <template lang="pug">
   nav.k-footer.navbar.navbar-expand-lg
     a.navbar-brand.mx-auto
-      img(src='@/assets/images/logo.png' width='76px')
+      //- img(src='@/assets/images/logo.png' width='76px')
 </template>
 
 <script>
