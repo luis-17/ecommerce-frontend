@@ -191,11 +191,7 @@ export default {
       }
     },
     'formDatosCita.idespecialidad': async function (newValue) {
-      // console.log(newValue, 'newValue especialidad');
-      // console.log(parseInt(newValue), 'parseInt(newValue) ');
       const findEspec = this.especialidades.find(e => e.value === parseInt(newValue));
-      // console.log(findEspec, 'findEspec');
-      // console.log(findEspec.raw, 'findEspec.raw');
       if (findEspec) {
         this.formDatosCita.especialidad = findEspec.raw.descripcion;
       }
@@ -211,6 +207,9 @@ export default {
         this.$swal({ type: err.type, text: err.message });
       } finally {
         this.$wait.end('global');
+        this.paso3 = 'section-inactive';
+        this.formDatosCita.horaCita = null;
+        this.formDatosCita.idhorario = null;
       }
     },
     'formDatosCita.idmedico': async function (newValue) {
@@ -221,19 +220,15 @@ export default {
       // cargamos programaciones
       try {
         this.$wait.start('global');
-        // this.formDatosCita.idmedico = null;
-        // this.formDatosCita.medico = null;
-        // if(this.formDatosCita.idmedico){
         await Vue.nextTick();
         await this.loadFechasProgramadas();
-        // }
-       
-        // await Vue.nextTick();
-        // this.errors.remove('idmedico', 'formDatosCita');
       } catch (err) {
         this.$swal({ type: err.type, text: err.message });
       } finally {
         this.$wait.end('global');
+        this.paso3 = 'section-inactive';
+        this.formDatosCita.horaCita = null;
+        this.formDatosCita.idhorario = null;
       }
     },
     'formDatosCita.idgarante': function (newValue) {
@@ -255,6 +250,9 @@ export default {
         this.$swal({ type: err.type, text: err.message });
       } finally {
         this.$wait.end('global');
+        this.paso3 = 'section-inactive';
+        this.formDatosCita.horaCita = null;
+        this.formDatosCita.idhorario = null;
       }
     },
   },
@@ -328,7 +326,6 @@ export default {
           this.$swal({ type: 'error', text: 'Ocurrió un error al registrar la cita. Inténtelo nuevamente.', timer: 3000 });
           return;
         }
-        
       },
       async confirmarCita() {
         if(!this.formDatosCita.idcliente){
@@ -481,7 +478,6 @@ export default {
     },
     async onPrevPeriodo(){
       this.formDatosCita.periodoActual = this.arrCalendario.periodoAnterior;
-      
     },
     async onNextPeriodo(){
       this.formDatosCita.periodoActual = this.arrCalendario.periodoSiguiente;
