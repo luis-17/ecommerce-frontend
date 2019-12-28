@@ -134,7 +134,7 @@ export default {
         });
         this.$swal({
           type: 'success',
-          title: 'Se anuló la cita correctamente',
+          text: 'Se anuló la cita correctamente',
           timer: 3000,
         }).then(() => {
           // this.$router.push({ name: 'Formalizador/HistorialCreditos' });

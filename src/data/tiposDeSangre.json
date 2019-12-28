@@ -1,0 +1,34 @@
+[
+  {
+    "value": "O-",
+    "text": "O Negativo"
+  },
+  {
+    "value": "O+",
+    "text": "O Positivo"
+  },
+  {
+    "value": "A-",
+    "text": "A Negativo"
+  },
+  {
+    "value": "A+",
+    "text": "A Positivo"
+  },
+  {
+    "value": "B-",
+    "text": "B Negativo"
+  },
+  {
+    "value": "B+",
+    "text": "B Positivo"
+  },
+  {
+    "value": "AB-",
+    "text": "AB Negativo"
+  },
+  {
+    "value": "AB+",
+    "text": "AB Positivo"
+  }
+]

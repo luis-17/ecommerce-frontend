@@ -2,6 +2,7 @@
 import defaults from 'defaults';
 
 export const mapWrapper = (actions, options) => {
+  console.log('mapWrapper');
   options = defaults(options, {
     waiter: 'global', returnWhenFail: null, forbiddenView: 'Login',
   });
@@ -28,6 +29,7 @@ export const mapWrapper = (actions, options) => {
 };
 
 export const mapValidation = (actions, options) => {
+  console.log('mapValidation');
   options = defaults(options, {
     waiter: 'global', returnWhenFail: null, forbiddenView: 'Login',
   });

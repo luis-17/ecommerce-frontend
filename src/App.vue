@@ -153,7 +153,7 @@ export default {
         type: 'warning',
         title: 'Sesi\u00F3n expirada',
       }).then(() => {
-        this.$router.push({ name: 'Login' });
+        this.$router.push({ name: 'Inicio' });
       });
     }
   },

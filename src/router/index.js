@@ -4,7 +4,7 @@ import Router from 'vue-router';
 import Root from '@/views/Layout/Root.vue';
 
 import Inicio from '@/views/Inicio.vue';
-import Login from '@/views/Auth/Login.vue';
+// import Login from '@/views/Auth/Login.vue';
 
 import RegistrarCuenta from '@/views/Auth/RegistrarCuenta.vue';
 import RecuperarCuenta from '@/views/Auth/RecuperarCuenta.vue';
@@ -33,6 +33,16 @@ const router = new Router({
     {
       path: '/',
       name: 'Inicio',
+      component: Inicio,
+      meta: { Auth: false },
+      async beforeEnter(to, from, next) {
+        await store.dispatch(accountTypes.actions.logout);
+        next();
+      },
+    },
+    {
+      path: '/',
+      name: 'Login',
       component: Inicio,
       meta: { Auth: false },
       async beforeEnter(to, from, next) {

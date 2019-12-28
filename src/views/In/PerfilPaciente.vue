@@ -89,53 +89,61 @@
                       v-validate='"required|numeric|min:9|max:9"'
                       :error='errors.first("formDatosPerfilPaciente.telefono")'
                       v-model.trim='formDatosPerfilPaciente.telefono')
-                  h4.col-lg-126.col-md-6.mt-3.m12-0 Datos Adicionales
+                  h4.col-lg-12.col-md-6.mt-3.m-0 Datos Adicionales
                   .col-lg-6.col-md-6.col-sm-12
-                    k-select(
-                      :label='"Tipo de Documento"'
-                      :placeholder='"Tipo de Documento"'
-                      :data-vv-as='"Tipo de Documento"'
-                      name='tipo_documento'
-                      v-validate='"required"'
-                      :error='errors.first("formDatosPerfilPaciente.tipo_documento")'
-                      v-model='formDatosPerfilPaciente.tipo_documento'
-                      :options='tiposDocumentos'
-                      :readonly='comboReadOnly')
+                    label.ml-2.mt-2.mb-0 Tipo de Documento
+                    strong.block.ml-2 {{ formDatosPerfilPaciente.tipo_documento }}
+                    //- k-select(
+                    //-   :label='"Tipo de Documento"'
+                    //-   :placeholder='"Tipo de Documento"'
+                    //-   :data-vv-as='"Tipo de Documento"'
+                    //-   name='tipo_documento'
+                    //-   v-validate='"required"'
+                    //-   :error='errors.first("formDatosPerfilPaciente.tipo_documento")'
+                    //-   v-model='formDatosPerfilPaciente.tipo_documento'
+                    //-   :options='tiposDocumentos'
+                    //-   :readonly='comboReadOnly')
                   .col-lg-6.col-md-6.col-sm-12
-                    k-input(
-                      mask='########'
-                      :label='"Número de Documento"'
-                      :placeholder='"Número de Documento"'
-                      :data-vv-as='"Número de Documento"'
-                      name='numero_documento'
-                      maxlength='8'
-                      v-validate='{ required: true, min: 8, max: 8 }'
-                      :error='errors.first("formDatosPerfilPaciente.numero_documento")'
-                      v-model.trim='formDatosPerfilPaciente.numero_documento'
-                      :readonly='true')
+                    label.ml-2.mt-2.mb-0 Número de Documento
+                    strong.block.ml-2 {{ formDatosPerfilPaciente.numero_documento }}
+                    //- k-input(
+                    //-   mask='########'
+                    //-   :label='"Número de Documento"'
+                    //-   :placeholder='"Número de Documento"'
+                    //-   :data-vv-as='"Número de Documento"'
+                    //-   name='numero_documento'
+                    //-   maxlength='8'
+                    //-   v-validate='{ required: true, min: 8, max: 8 }'
+                    //-   :error='errors.first("formDatosPerfilPaciente.numero_documento")'
+                    //-   v-model.trim='formDatosPerfilPaciente.numero_documento'
+                    //-   :readonly='true')
                   .col-lg-6.col-md-6.col-sm-12
-                    k-select(
-                      :label='"Sexo"'
-                      :placeholder='"Sexo"'
-                      :data-vv-as='"Sexo"'
-                      name='sexo'
-                      v-validate='"required"'
-                      :error='errors.first("formDatosPerfilPaciente.sexo")'
-                      v-model='formDatosPerfilPaciente.sexo'
-                      :options='sexos'
-                      :readonly='comboReadOnly')
+                    label.ml-2.mt-2.mb-0 Sexo
+                    strong.block.ml-2 {{ obtenSexo }}
+                    //- k-select(
+                    //-   :label='"Sexo"'
+                    //-   :placeholder='"Sexo"'
+                    //-   :data-vv-as='"Sexo"'
+                    //-   name='sexo'
+                    //-   v-validate='"required"'
+                    //-   :error='errors.first("formDatosPerfilPaciente.sexo")'
+                    //-   v-model='formDatosPerfilPaciente.sexo'
+                    //-   :options='sexos'
+                    //-   :readonly='true')
                   .col-lg-6.col-md-6.col-sm-12
-                    k-input(
-                      type='date'
-                      :label='"Fecha de Nacimiento"'
-                      :placeholder='"Fecha de Nacimiento"'
-                      :data-vv-as='"Fecha de Nacimiento"'
-                      name='fecha_nacimiento'
-                      maxlength='10'
-                      v-validate='"required"'
-                      :error='errors.first("formDatosPerfilPaciente.fecha_nacimiento")'
-                      v-model.trim='formDatosPerfilPaciente.fecha_nacimiento'
-                      :readonly='true')
+                    label.ml-2.mt-2.mb-0 Fecha de Nacimiento
+                    strong.block.ml-2 {{ formDatosPerfilPaciente.fecha_nacimiento }}
+                    //- k-input(
+                    //-   type='date'
+                    //-   :label='"Fecha de Nacimiento"'
+                    //-   :placeholder='"Fecha de Nacimiento"'
+                    //-   :data-vv-as='"Fecha de Nacimiento"'
+                    //-   name='fecha_nacimiento'
+                    //-   maxlength='10'
+                    //-   v-validate='"required"'
+                    //-   :error='errors.first("formDatosPerfilPaciente.fecha_nacimiento")'
+                    //-   v-model.trim='formDatosPerfilPaciente.fecha_nacimiento'
+                    //-   :readonly='true')
                   k-button-layout.mt-3
                     k-button(type='submit') Actualizar Datos
           .tab.tab-clinico(v-show='boolDatosClinicos')
@@ -203,15 +211,15 @@
                       :error='errors.first("formDatosPerfilClinico.estatura")'
                       v-model.trim='formDatosPerfilClinico.estatura')
                   .col-lg-6.col-md-6.col-sm-12
-                    k-input(
+                    k-select(
                       :label='"Tipo de Sangre"'
                       :placeholder='"Tipo de Sangre"'
                       :data-vv-as='"Tipo de Sangre"'
                       name='tipo_sangre'
-                      maxlength='3'
-                      v-validate='"required|max:3"'
+                      v-validate='"required"'
                       :error='errors.first("formDatosPerfilClinico.tipo_sangre")'
-                      v-model.trim='formDatosPerfilClinico.tipo_sangre')
+                      v-model.trim='formDatosPerfilClinico.tipo_sangre'
+                      :options='tiposDeSangre')
                   .col-lg-6.col-md-6.col-sm-12
                     k-input(
                       :label='"Edad"'
@@ -276,6 +284,7 @@ import Confirm from '@/views/In/Components/Confirm.vue';
 
 import tiposDocumentos from '@/data/tiposDocumentos.json';
 import sexos from '@/data/sexos.json';
+import tiposDeSangre from '@/data/tiposDeSangre.json';
 
 export default {
   name: 'PerfilPaciente',
@@ -337,6 +346,17 @@ export default {
     }),
     tiposDocumentos: () => tiposDocumentos,
     sexos: () => sexos,
+    tiposDeSangre: () => tiposDeSangre,
+    obtenSexo() {
+      let strSexo = null
+      if(this.formDatosPerfilPaciente.sexo === 'M'){
+        strSexo = 'MASCULINO';
+      }
+      if(this.formDatosPerfilPaciente.sexo === 'F'){
+        strSexo = 'FEMENINO';
+      }
+      return strSexo;
+    },
   },
   methods: {
     ...mapWrapper({
@@ -379,7 +399,7 @@ export default {
         });
         this.$swal({
           type: 'success',
-          title: 'Se quitó al familiar correctamente',
+          text: 'Se quitó al familiar correctamente',
           timer: 3000,
         }).then(() => {
           this.showConfirm = false;
@@ -398,7 +418,7 @@ export default {
         });
         this.$swal({
           type: 'success',
-          title: 'Información actualizada correctamente.',
+          text: 'Información actualizada correctamente.',
           timer: 3000,
         });
       },
@@ -411,9 +431,10 @@ export default {
         });
         this.$swal({
           type: 'success',
-          title: 'Información actualizada correctamente.',
+          text: 'Información actualizada correctamente.',
           timer: 3000,
         });
+        await this.fetchData();
       },
     }),
     async openConfirmQuitarFamiliar(idcliente) {
