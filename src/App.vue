@@ -40,7 +40,7 @@
               a.box-icon.box-times(:class='{"visible": isShowIcon === "times"}' href='javascript:void(0)' @click='verMenuResponsive' )
                 i.fas.fa-times
             .logout
-              a.logout-text(href='javascript:void(0)' @click='cerrarSesion')
+              a.logout-text(href='javascript:void(0)' @click='cerrarSesion' v-tooltip="'Cerrar Sesión'")
                 i.fas.fa-sign-out-alt
       template(
         v-if='$can("logged", "USER")'
@@ -167,6 +167,7 @@ export default {
   @import '@/../node_modules/bootstrap/scss/bootstrap.scss';
   @import '@/assets/form.scss';
   @import '@/../node_modules/pikaday/scss/pikaday.scss';
+  @import '@/assets/tooltip.scss';
   .navbar-brand{
     margin-left: 1rem;
     display: flex;

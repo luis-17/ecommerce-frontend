@@ -10,6 +10,8 @@
               .col-12
                 h4 <strong>PASO 1:</strong> Selecciones Filtros
               .col-12
+                a.btn.btn-info.btn-agregar-fam(href='javascript:void(0);' v-tooltip="'Agregar Familiar'" @click='$router.push({ name: "RegistrarFamiliar", params: {edit: false, origin: "AgendarCita"} })')
+                  i.fas.fa-plus
                 k-select(
                   :label='"LA CITA ES PARA:"'
                   :placeholder='"LA CITA ES PARA:"'
@@ -318,7 +320,7 @@ export default {
         });
         console.log(this.formDatosCita, 'this.formDatosCita');
         if(flag === 1){
-          this.$swal({ type: 'success', text: 'Se registró la cita correctamente', timer: 3000 }).then(() => {
+          this.$swal({ type: 'success', text: 'Se registró la cita correctamente', timer: 7000 }).then(() => {
             this.$router.push({ name: 'HistorialCitas' });
           });
         }
@@ -398,6 +400,9 @@ export default {
         }finally{
           this.$wait.end('global');
         }
+      },
+      async agregarFamiliar() {
+
       },
     }),
     // async openConfirmAnularCita(idcita) {
@@ -730,6 +735,12 @@ export default {
   }
   .page.cita .box-confirmacion .box-action{
       padding-top: 10px;
+  }
+  .page.cita .btn-agregar-fam{
+    position: absolute;
+    right: 1.25rem;
+    padding: 0.1rem 0.45rem;
+    top: 0.5rem;
   }
   @media (max-width: 1199px){
     .page.cita .box-filtros{

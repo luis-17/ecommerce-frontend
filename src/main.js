@@ -19,6 +19,7 @@ import vueFilterPrettyBytes from 'vue-filter-pretty-bytes';
 import Vue2TouchEvents from 'vue2-touch-events';
 import IdleVue from 'idle-vue';
 import moment from 'moment-timezone';
+import VTooltip from 'v-tooltip';
 
 import { library } from '@fortawesome/fontawesome-svg-core';
 import {
@@ -96,6 +97,8 @@ Vue.use(VueCurrencyFilter, {
 Vue.use(InfiniteLoading, { /* options */ });
 Vue.use(vueFilterPrettyBytes);
 Vue.use(Vue2TouchEvents);
+
+Vue.use(VTooltip);
 
 const eventsHub = new Vue();
 Vue.use(IdleVue, {

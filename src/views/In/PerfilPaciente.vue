@@ -246,7 +246,7 @@
             .box-header
               h3 Gestionar familiares
             .box-list
-              k-button(type='button' @click='$router.push({ name: "RegistrarFamiliar", params: {edit: false} })') AGREGAR FAMILIAR
+              k-button(type='button' @click='$router.push({ name: "RegistrarFamiliar", params: {edit: false, origin: "PerfilPaciente"} })') AGREGAR FAMILIAR
               .table-responsive
                 table.table.table-condensed.table-hover
                   thead
@@ -263,7 +263,7 @@
                       td {{ row.descripcion_par }}
                       td {{ row.fecha_nacimiento }}
                       td.action
-                        a.btn(href='javascript:void(0);' @click='$router.push({ name: "RegistrarFamiliar", params: {edit: row} })') Editar
+                        a.btn(href='javascript:void(0);' @click='$router.push({ name: "RegistrarFamiliar", params: {edit: row, origin: "PerfilPaciente"} })') Editar
                         a.btn.btn-danger(href='javascript:void(0);' @click='openConfirmQuitarFamiliar(row.idcliente)') Quitar
         confirm(
           :show.sync='showConfirm'

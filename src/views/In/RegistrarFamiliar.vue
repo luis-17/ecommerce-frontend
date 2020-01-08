@@ -117,7 +117,7 @@ import sexos from '@/data/sexos.json';
 export default {
   name: 'RegistrarCuenta',
   dependencies: ['CommonService', 'AccountService', 'GenericService'],
-  props:['edit'],
+  props:['edit', 'origin'],
   data: () => ({
     formDatosFamiliar: {
       idcliente: null,
@@ -184,7 +184,7 @@ export default {
           });
           const { flag, message } = arrData;
           this.$swal({ type: 'success', text: message }).then(() => {
-            this.$router.push({ name: 'PerfilPaciente' });
+            this.$router.push({ name: this.origin });
           });
         } catch (err) {
           this.$swal({ type: err.type, text: err.message });
