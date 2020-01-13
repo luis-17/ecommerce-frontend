@@ -56,20 +56,18 @@ export default {
   async created() {
     this.strTextTitle = this.textTitle;
     this.strSelectedFecha = this.selectedFecha;
-    // console.log(this.selectedFecha, 'SELECYEDFECHA');
-  },
-  computed: {
-    // console.log(this.selectedFecha);
   },
   watch: {
     show(newValue) {
       this.isModalTurno = newValue;
+      if(newValue === true){
+        this.selectedTurno = null;
+      }
     },
   },
   methods: {
     ...mapWrapper({
       async elegirTurno() {
-        console.log(this.selectedTurno, 'this.selectedTurno');
         if(!this.selectedTurno){
           this.$swal({
             type: 'warning',
@@ -83,7 +81,6 @@ export default {
         this.$emit("update:show", false);
       },
       async onChangeHorarios(item) {
-        console.log(item, 'itemitem');
         this.selectedTurno = item;
       },
     }),

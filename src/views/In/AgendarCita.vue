@@ -357,8 +357,6 @@ export default {
         this.paso3 = 'section-active';
       },
       async openDialogTurno(fecha, clase, idx, idxParent) {
-        // console.log(idx, 'idx');
-        // console.log(clase.trim(), 'clase.trim()');
         if(!(clase.includes('active'))){
           return false;
         }
@@ -366,6 +364,11 @@ export default {
           this.$wait.start('global');
           await Vue.nextTick();
           this.formDatosCita.fecha_cita = fecha;
+          this.formDatosCita.hora_inicio = null;
+          this.formDatosCita.horaCita = null;
+          this.formDatosCita.idhorario = null;
+          this.formDatosCita.hora_fin = null;
+          this.formDatosCita.duracionCita = null;
           this.arrCalendario.calendario.map((rowParent,index) => {
             rowParent.map((rowChild, indexChild) => {
               if(this.arrCalendario.calendario[index][indexChild].class.includes('selected')){
@@ -401,16 +404,8 @@ export default {
           this.$wait.end('global');
         }
       },
-      async agregarFamiliar() {
-
-      },
     }),
-    // async openConfirmAnularCita(idcita) {
-    //   this.showConfirm = !this.showConfirm;
-    //   this.selectedIdCita = idcita;
-    // },
     async loadMedicosPorEsp() {
-      // console.log();
       try{
         this.$wait.start('global');
         const { datos } = await this.GenericService.store({
@@ -447,20 +442,6 @@ export default {
       } finally {
         this.$wait.end('global');
       }
-      
-      // console.log('antes');
-      // if (datos && flag === 1) {
-      //   console.log(datos, flag, 'datos, flag');
-      //   this.medicos = datos.map(d => ({
-      //     value: d.idmedico,
-      //     text: d.descripcion,
-      //     raw: d,
-      //   }));
-      //   this.formDatosCita.idmedico = this.medicos[0].value;
-      // }else{
-      //   console.log('elsee xd');
-      //   this.medicos = [];
-      // }
     },
     async loadFechasProgramadas() {
       if(!this.formDatosCita.idmedico){
