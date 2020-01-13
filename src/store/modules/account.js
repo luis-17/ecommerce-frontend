@@ -73,10 +73,10 @@ const actions = {
     try {
       commit(accountType.mutations.loginRequest);
       const data = await AccountService.login(credentials);
-      console.log(data, 'vuex dataaa');
+      // console.log(data, 'vuex dataaa');
       const { token, flag } = data;
       const user = jwtDecode(token);
-      console.log(user, 'useeerrr');
+      // console.log(user, 'useeerrr');
       commit(accountType.mutations.loginSuccess, { user, token });
 
 
