@@ -3,10 +3,11 @@
     vue-element-loading(
       :active='$wait.waiting("global")'
       :is-full-screen='true')
-      vue-simple-spinner(
-        :size='50'
-        :line-size='7'
-        :message='$t("messages.processing")')
+      img.loader-custom(src='@/assets/images/loader-logo-1.gif')
+      //- vue-simple-spinner(
+      //-   :size='50'
+      //-   :line-size='7'
+      //-   :message='$t("messages.processing")')
     vue-element-loading(
       :active='$wait.waiting("uploading")'
       :is-full-screen='true')
@@ -188,6 +189,8 @@ export default {
     overflow: hidden;
     width: 100px;
   }
-  
+  img.loader-custom{
+    width: 150px;
+  }
   
 </style>
