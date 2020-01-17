@@ -17,6 +17,7 @@ import AgendarCita from '@/views/In/AgendarCita.vue';
 import HistorialCitas from '@/views/In/HistorialCitas.vue';
 import PerfilPaciente from '@/views/In/PerfilPaciente.vue';
 import RegistrarFamiliar from '@/views/In/RegistrarFamiliar.vue';
+import ConfirmarPago from '@/views/In/ConfirmarPago.vue';
 // end: In
 
 import { store } from '@/store';
@@ -101,12 +102,18 @@ const router = new Router({
           name: 'HistorialCitas',
           component: HistorialCitas,
           meta: { Auth: true },
+          children: [{
+            path: 'confirmar-pago',
+            name: 'ConfirmarPago',
+            component: ConfirmarPago,
+            props: true,
+            meta: { Auth: true },
+          }],
         },
         {
           path: 'perfil-de-paciente',
           name: 'PerfilPaciente',
           component: PerfilPaciente,
-          // props: true,
           meta: { Auth: true },
           children: [{
             path: 'registrar-familiar',
@@ -116,12 +123,6 @@ const router = new Router({
             meta: { Auth: true },
           }],
         },
-        // {
-        //   path: '/registrar-familiar',
-        //   name: 'RegistrarFamiliar',
-        //   component: RegistrarFamiliar,
-        //   meta: { Auth: true },
-        // },
       ],
     },
   ],

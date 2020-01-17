@@ -80,6 +80,7 @@ import VueRecaptcha from 'vue-recaptcha';
 import { mapGetters } from 'vuex';
 import { mapWaitingActions } from 'vue-wait';
 // import fuvexTypes from '@/store/types/fuvex';
+import store from 'store2';
 import accountTypes from '@/store/types/account';
 import { mapWrapper, mapValidation } from '@/common/taco';
 import { mapTaco } from '@/common/util';
@@ -163,9 +164,10 @@ export default {
           //   data: { ...this.formDatosLogin, recaptcha: response },
           // });
           const arrData = await this.login({ ...this.formDatosLogin, recaptcha: response });
-          console.log(arrData, 'arrDataarrData');
-          const { flag } = arrData;
+          // console.log(arrData, 'arrDataarrData');
+          const { flag, token } = arrData;
           if (flag === 1) {
+            store.set('TID', token);
             this.$router.push({ name: "Home" })
             // await this.$store.dispatch(fuvexTypes.actions.changeView, 'Home');
           }
