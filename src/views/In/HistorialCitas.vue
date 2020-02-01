@@ -67,11 +67,6 @@
         :textTitle='"¿Está seguro de anular la cita?"'
         @confirm='onConfirm')
       router-view
-      //- confirm(
-      //-   :show.sync='showConfirmPago'
-      //-   :textTitle='"¿Está seguro de pagar la cita?"'
-      //-   @confirm='onConfirmPago')
-
 </template>
 <script>
 import Vue from 'vue';

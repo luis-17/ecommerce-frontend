@@ -4,10 +4,6 @@
       :active='$wait.waiting("global")'
       :is-full-screen='true')
       img.loader-custom(src='@/assets/images/loader-logo-1.gif')
-      //- vue-simple-spinner(
-      //-   :size='50'
-      //-   :line-size='7'
-      //-   :message='$t("messages.processing")')
     vue-element-loading(
       :active='$wait.waiting("uploading")'
       :is-full-screen='true')
@@ -35,7 +31,7 @@
             .box-info
               .box-info-rol Bienvenido
               .box-info-nickname {{ user.nombres }}
-            .box-icon-menu
+            .box-icon-menu(ref='boxIconMenu' id='boxIconMenu')
               a.box-icon.box-bars(:class='{"visible": isShowIcon === "bars"}' href='javascript:void(0)' @click='verMenuResponsive')
                 i.fas.fa-bars
               a.box-icon.box-times(:class='{"visible": isShowIcon === "times"}' href='javascript:void(0)' @click='verMenuResponsive' )
@@ -46,7 +42,7 @@
       template(
         v-if='$can("logged", "USER")'
         v-slot:lateralMobile='')
-        .menu-content
+        .menu-content(v-click-outside="closeMenu")
           .nav-heading.box-mp
             h3.box-label-mp OPCIONES
           .items
@@ -96,6 +92,9 @@ export default {
       inProcess: fuvexTypes.getters.getInProcess,
     }),
   },
+  mounted () {
+    // console.log(this.$refs.boxIconMenu);
+  },
   created() {
     window.addEventListener('beforeunload', this.handler);
     // console.log(accountTypes.getters.getUser, 'accountTypes.getters.getUser')
@@ -124,11 +123,18 @@ export default {
       //   });
       // }
     },
-    verMenuResponsive() {
+    async verMenuResponsive() {
+      console.log('async verMenuResponsive');
       if(this.classDynamic.includes('semion')){
         this.classDynamic = 'on';
         this.isShowIcon = 'times';
       }else{
+        this.classDynamic = 'semion';
+        this.isShowIcon = 'bars';
+      }
+    },
+    async closeMenu() {
+      if(!this.classDynamic.includes('semion')){
         this.classDynamic = 'semion';
         this.isShowIcon = 'bars';
       }
@@ -145,6 +151,9 @@ export default {
         })(newValue[newValue.length - 1]);
       }
     },
+    $route: async function () {
+      this.closeMenu();
+    },
   },
   async onIdle() {
     if (this.user.username) {
@@ -160,6 +169,27 @@ export default {
   },
   onActive() {
     // is active
+  },
+  directives: {
+    'click-outside': {
+      bind: function (el, binding, vnode) {
+        document.body.addEventListener('click', function (event) {
+          if (!(el == event.target || el.contains(event.target))) {
+            const domIconMenu = document.getElementById('boxIconMenu');
+            if(!(domIconMenu == event.target || domIconMenu.contains(event.target))){
+              vnode.context[binding.expression](event);
+            }
+          }
+        });
+      },
+      unbind: function (el) {
+        document.body.removeEventListener('click', function (event) {
+          if (!(el == event.target || el.contains(event.target))) {
+            vnode.context[binding.expression](event);
+          }
+        });
+      },
+    },
   },
 };
 </script>
@@ -192,5 +222,4 @@ export default {
   img.loader-custom{
     width: 150px;
   }
-  
 </style>

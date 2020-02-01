@@ -140,7 +140,6 @@ Vue.filter('fecha_sequelize', value => (value ? moment(value).format('YYYY-MM-DD
 Vue.filter('decimal_2', value => (value ? value.toFixed(2) : ''));
 Vue.filter('timeAGo', value => (value ? moment(value).fromNow() : ''));
 Vue.filter('rmSymbol', (value = '') => value.replace('S/ ', ''));
-// toFixed
 
 Vue.config.productionTip = false;
 
