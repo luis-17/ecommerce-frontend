@@ -37,7 +37,7 @@
                     .value {{ row.especialidad }}
                   .box-action
                     k-button( class='btn-rounded btn-danger btn-sm' type='button' @click='openConfirmAnularCita(row.idcita)') ANULAR CITA
-                    k-button( class='btn-rounded btn-light ml-4 btn-sm' type='button' @click='$router.push({ name: "ConfirmarPago", params: { fCita: row } })') PAGAR CITA
+                    //- k-button( class='btn-rounded btn-light ml-4 btn-sm' type='button' @click='$router.push({ name: "ConfirmarPago", params: { fCita: row } })') PAGAR CITA
           .box-tab.box-tab-cr(v-if='isActiveCR')
             .box-periodo
             .box-content-items(v-for='(row, index) in citasRealizadas')
