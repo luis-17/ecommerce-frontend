@@ -133,8 +133,8 @@ export default {
   }
   .page-home .box-bienvenida .box-principal{
       flex: 2.5;
-      background-image: url('/assets/img/home.jpg');
-      background-image: url('/home.jpg');
+      // background-image: url('/assets/img/home.jpg');
+      // background-image: url('/home.jpg');
       background-repeat: no-repeat;
       background-size: cover;
       position: relative;

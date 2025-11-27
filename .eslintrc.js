@@ -8,6 +8,10 @@ module.exports = {
     '@vue/airbnb',
   ],
   rules: {
+    // desactivamos todos los parsing errors de Vue
+    'vue/no-parsing-error': 'off',
+
+    // otras reglas existentes
     'func-names': 'off',
     'global-require': 'off',
     'no-param-reassign': 'off',
@@ -20,13 +24,16 @@ module.exports = {
     'no-nested-ternary': 'off',
     'no-console': process.env.NODE_ENV === 'production' ? 'error' : 'off',
     'no-debugger': process.env.NODE_ENV === 'production' ? 'error' : 'off',
-    'max-len': [
-      'error', {
-        code: 600,
-      },
-    ],
+    'max-len': ['error', { code: 600 }],
   },
+  parser: "@babel/eslint-parser",
   parserOptions: {
-    parser: 'babel-eslint',
-  },
+    requireConfigFile: false,
+    babelOptions: {
+      presets: ["@babel/preset-env"]
+    },
+    ecmaFeatures: {
+      jsx: true
+    }
+  }
 };

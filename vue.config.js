@@ -1,6 +1,7 @@
 const Webpack = require('webpack');
 
 module.exports = {
+  lintOnSave: false,
   configureWebpack: (config) => {
     // config.plugins.push(new Webpack.DefinePlugin({
     //   'process.env.API_URL': '"http://localhost:8080/api-citas-providencia/public/api"',

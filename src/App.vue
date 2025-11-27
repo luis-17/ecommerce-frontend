@@ -13,12 +13,12 @@
         :message='$t("messages.uploading")')
     k-header(:classDynamic='classDynamic')
       template(
-        v-if='$can("logged", "USER")'
+        v-if='user && user.nombres'
         v-slot:header='')
         .box-menu
           ul.box-content-menu
             li
-              a( href='javascript:void(0)' @click='$router.push({ name: "Home" })' ) INICIO
+              a(href='javascript:void(0)' @click='$router.push({ name: "Home" })') INICIO
             li
               a( href='javascript:void(0)' @click='$router.push({ name: "AgendarCita" })' ) AGENDAR CITA
             li
@@ -40,7 +40,7 @@
               a.logout-text(href='javascript:void(0)' @click='cerrarSesion' v-tooltip="'Cerrar Sesión'")
                 i.fas.fa-sign-out-alt
       template(
-        v-if='$can("logged", "USER")'
+        v-if='user && user.nombres'
         v-slot:lateralMobile='')
         .menu-content(v-click-outside="closeMenu")
           .nav-heading.box-mp

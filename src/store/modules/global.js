@@ -1,4 +1,4 @@
-import startOfDay from 'date-fns/start_of_day';
+import startOfDay from 'date-fns/startOfDay';
 import globalTypes from '@/store/types/global';
 
 const state = {
