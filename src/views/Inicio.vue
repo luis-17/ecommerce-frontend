@@ -46,8 +46,17 @@
               .box-recaptcha
                 img(src='@/assets/images/recaptcha_16dp.png')
                 span Protección de reCAPTCHA. Privacidad-Condiciones
+            .col-12.col-md-12
+              .box-terms
+                label
+                  input(
+                    type='checkbox'
+                    v-model.trim='aceptaTerminos'
+                  )
+                  span Acepto los 
+                    a(href='https://citasenlinea.clinicaprovidencia.pe/img/Pol%C3%ADtica%20de%20Privacidad%20de%20Datos%20Personales%20-%202026.pdf' target='_blank') Términos y Condiciones
             k-button-layout.col-lg-12
-              k-button(type='submit' class='btn-block') Iniciar sesión
+              k-button(type='submit' class='btn-block' :disabled='!aceptaTerminos') Iniciar sesión
       .box-form-others
         .box-form-options(v-if='boolActionsBtn')
           .box-olvido-clave.text-center
@@ -97,6 +106,7 @@ export default {
     boolActionsBtn: true,
     boolOlvidoClave: false,
     boolRegistrateAhora: false,
+    aceptaTerminos: false,
     formDatosLogin: {
       username: null,
       password: null,
@@ -163,7 +173,7 @@ export default {
           //   uri: 'login',
           //   data: { ...this.formDatosLogin, recaptcha: response },
           // });
-          const arrData = await this.login({ ...this.formDatosLogin, recaptcha: response });
+          const arrData = await this.login({ ...this.formDatosLogin, recaptcha: response, aceptaTerminos: this.aceptaTerminos });
           // console.log(arrData, 'arrDataarrData');
           const { flag, token } = arrData;
           if (flag === 1) {
@@ -303,6 +313,11 @@ export default {
     width: 18px;
     margin-right: 0.5rem;
     margin-left: 0.5rem;
+  }
+  .box-terms span{
+    margin-left: 6px;
+    margin-top: -2px;
+    position: absolute;
   }
   .info-contacto small > a{
     color: #00d7cb;

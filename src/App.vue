@@ -172,22 +172,26 @@ export default {
   },
   directives: {
     'click-outside': {
-      bind: function (el, binding, vnode) {
-        document.body.addEventListener('click', function (event) {
-          if (!(el == event.target || el.contains(event.target))) {
-            const domIconMenu = document.getElementById('boxIconMenu');
-            if(!(domIconMenu == event.target || domIconMenu.contains(event.target))){
-              vnode.context[binding.expression](event);
-            }
-          }
-        });
-      },
-      unbind: function (el) {
-        document.body.removeEventListener('click', function (event) {
-          if (!(el == event.target || el.contains(event.target))) {
+      bind(el, binding, vnode) {
+        el.__clickOutsideHandler__ = function (event) {
+          const domIconMenu = document.getElementById('boxIconMenu');
+
+          // Validación para evitar error cuando domIconMenu es null
+          if (
+            !(el === event.target || el.contains(event.target)) &&
+            domIconMenu &&
+            !(domIconMenu === event.target || domIconMenu.contains(event.target))
+          ) {
             vnode.context[binding.expression](event);
           }
-        });
+        };
+
+        document.body.addEventListener('click', el.__clickOutsideHandler__);
+      },
+
+      unbind(el) {
+        document.body.removeEventListener('click', el.__clickOutsideHandler__);
+        delete el.__clickOutsideHandler__;
       },
     },
   },

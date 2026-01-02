@@ -122,8 +122,23 @@
             :error='errors.first("formDatosRegistro.repita_pass")'
             v-model.trim='formDatosRegistro.repita_pass'
             :all-uppercase='false')
+      .row.mt-3
+        .col-12
+          label.d-flex.align-items-center
+            input(
+              type='checkbox'
+              v-model='formDatosRegistro.flag_terms'
+              name='flag_terms'
+            )
+            span.ml-2
+              | Acepto los 
+              a(
+                href='https://citasenlinea.clinicaprovidencia.pe/img/Pol%C3%ADtica%20de%20Privacidad%20de%20Datos%20Personales%20-%202026.pdf'
+                target='_blank'
+                rel='noopener'
+              ) Términos y Condiciones
         k-button-layout.mt-3
-          k-button(type='submit') Crear Cuenta
+          k-button(type='submit' :disabled='!formDatosRegistro.flag_terms') Crear Cuenta
           br
           k-button(type='link' @click='$router.push({ name: "Inicio" })') Volver al Inicio
         //- k-button-layout.col-lg-12.mt-3
@@ -159,6 +174,7 @@ export default {
       sexo: null,
       password: null,
       repita_pass: null,
+      flag_terms: false,
     },
   }),
   async created() {
@@ -174,6 +190,13 @@ export default {
       if (isValid) {
         try {
           this.$wait.start('global');
+          if (!this.formDatosRegistro.flag_terms) {
+            this.$swal({
+              type: 'warning',
+              text: 'Debe aceptar los términos y condiciones para continuar.'
+            });
+            return;
+          }
           const arrData = await this.AccountService.registrarCuenta({
             ...this.formDatosRegistro, username: this.formDatosRegistro.numero_documento,
           });
